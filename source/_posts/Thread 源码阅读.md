@@ -10,6 +10,8 @@ tags:
 
 ![image](https://wx1.sinaimg.cn/large/b727c653ly1fyrcehtqfnj20a50hm0t1.jpg)
 
+<!-- more -->
+
 ```java
 public
 class Thread implements Runnable {
