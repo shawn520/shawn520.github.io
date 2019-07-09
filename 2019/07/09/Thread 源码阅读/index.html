@@ -94,19 +94,19 @@
 
 
 
-  <meta name="description" content="Thread 源码阅读 123publicclass Thread implements Runnable &amp;#123;&amp;#125;  所有Thread类实现了Runnable接口并实现了run()方法，为什么叫Runnable，而不是Running呢? 那是因为线程是可运行状态，并不表示此时此刻正在运行，线程的运行还需要处理器的调度。 构造方法1234public Thread(ThreadGr">
+  <meta name="description" content="Thread 源码阅读">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thread 源码阅读">
 <meta property="og:url" content="http://yoursite.com/2019/07/09/Thread 源码阅读/index.html">
 <meta property="og:site_name" content="Shawn Liu">
-<meta property="og:description" content="Thread 源码阅读 123publicclass Thread implements Runnable &amp;#123;&amp;#125;  所有Thread类实现了Runnable接口并实现了run()方法，为什么叫Runnable，而不是Running呢? 那是因为线程是可运行状态，并不表示此时此刻正在运行，线程的运行还需要处理器的调度。 构造方法1234public Thread(ThreadGr">
+<meta property="og:description" content="Thread 源码阅读">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://wx1.sinaimg.cn/large/b727c653ly1fyrcehtqfnj20a50hm0t1.jpg">
-<meta property="og:updated_time" content="2019-07-09T13:35:06.734Z">
+<meta property="og:updated_time" content="2019-07-09T13:43:52.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thread 源码阅读">
-<meta name="twitter:description" content="Thread 源码阅读 123publicclass Thread implements Runnable &amp;#123;&amp;#125;  所有Thread类实现了Runnable接口并实现了run()方法，为什么叫Runnable，而不是Running呢? 那是因为线程是可运行状态，并不表示此时此刻正在运行，线程的运行还需要处理器的调度。 构造方法1234public Thread(ThreadGr">
+<meta name="twitter:description" content="Thread 源码阅读">
 <meta name="twitter:image" content="https://wx1.sinaimg.cn/large/b727c653ly1fyrcehtqfnj20a50hm0t1.jpg">
 
 
@@ -419,7 +419,7 @@
                 
               
 
-              <time title="创建时间：2019-07-09 13:35:06" itemprop="dateCreated datePublished" datetime="2019-07-09T13:35:06Z">2019-07-09</time>
+              <time title="创建时间：2019-07-09 13:43:52" itemprop="dateCreated datePublished" datetime="2019-07-09T13:43:52Z">2019-07-09</time>
             </span>
           
 
@@ -495,6 +495,8 @@
 
       
         <h1 id="Thread-源码阅读"><a href="#Thread-源码阅读" class="headerlink" title="Thread 源码阅读"></a>Thread 源码阅读</h1><p><img src="https://wx1.sinaimg.cn/large/b727c653ly1fyrcehtqfnj20a50hm0t1.jpg" alt="image"></p>
+<a id="more"></a>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所有Thread类实现了<code>Runnable</code>接口并实现了<code>run()</code>方法，为什么叫Runnable，而不是Running呢? 那是因为线程是可运行状态，并不表示此时此刻正在运行，线程的运行还需要处理器的调度。</p>
