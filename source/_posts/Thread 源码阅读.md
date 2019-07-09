@@ -1,9 +1,10 @@
 ---
 title: Thread 源码阅读
 categories:
-- Diary
+- 好好学习
 tags:
-  - Java
+  - JDK源码
+date: 2019-02-20 20:19:46
 ---
 
 # Thread 源码阅读

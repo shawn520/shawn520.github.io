@@ -197,9 +197,9 @@ site_state: true
 # Value before `||` delimiter is the target permalink.
 # Value after `||` delimiter is the name of FontAwesome icon. If icon (with or without delimiter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/yourname || github
-  E-Mail: mailto:yourname@gmail.com || envelope
-  Weibo: https://weibo.com/yourname || weibo
+  GitHub: https://github.com/shawn520 || github
+  E-Mail: mailto:liushawn@outlook.com || envelope
+  Weibo: https://weibo.com/liushawn || weibo
   Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
@@ -207,7 +207,7 @@ social:
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
   #YouTube: https://youtube.com/yourname || youtube
   #Instagram: https://instagram.com/yourname || instagram
-  Skype: skype:yourname?call|chat || skype
+  Skype: skype:liushawn?call|chat || skype
 
 social_icons:
   enable: true
