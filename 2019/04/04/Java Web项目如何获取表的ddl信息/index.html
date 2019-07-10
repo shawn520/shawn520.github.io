@@ -94,17 +94,21 @@
 
 
 
-  <meta name="description" content="Share my life, work, and study.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shawn Liu">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="背景：公司项目是做MySQL数据向同构和异构数据库同步和消息订阅的。在做向消息中间件RMQ同步时，需要根据源表的表信息，在目标数据库创建一个相同的逻辑表。 如果是用shell的话：show create table tableName就可以搞定啦。这里一共有两个参数，第一个是table，第二个是create Table, 我们需要的就是create Table的建表语句。但是这个用Java怎么实现">
+<meta name="keywords" content="JDBC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web项目如何获取表的ddl信息？">
+<meta property="og:url" content="http://yoursite.com/2019/04/04/Java Web项目如何获取表的ddl信息/index.html">
 <meta property="og:site_name" content="Shawn Liu">
-<meta property="og:description" content="Share my life, work, and study.">
+<meta property="og:description" content="背景：公司项目是做MySQL数据向同构和异构数据库同步和消息订阅的。在做向消息中间件RMQ同步时，需要根据源表的表信息，在目标数据库创建一个相同的逻辑表。 如果是用shell的话：show create table tableName就可以搞定啦。这里一共有两个参数，第一个是table，第二个是create Table, 我们需要的就是create Table的建表语句。但是这个用Java怎么实现">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NoYXduNTIwL3N0b3JhZ2UvbWFzdGVyL3BpY3R1cmVzL3Nob3ctY3JlYXRlLXRhYmxlLnBuZw">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly93czMuc2luYWltZy5jbi9sYXJnZS9iNzI3YzY1M2x5MWcxcWJsaGZicTRqMjBtbTA0aW14OC5qcGc">
 <meta property="og:updated_time" content="2019-07-10T01:30:27.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shawn Liu">
-<meta name="twitter:description" content="Share my life, work, and study.">
+<meta name="twitter:title" content="Java Web项目如何获取表的ddl信息？">
+<meta name="twitter:description" content="背景：公司项目是做MySQL数据向同构和异构数据库同步和消息订阅的。在做向消息中间件RMQ同步时，需要根据源表的表信息，在目标数据库创建一个相同的逻辑表。 如果是用shell的话：show create table tableName就可以搞定啦。这里一共有两个参数，第一个是table，第二个是create Table, 我们需要的就是create Table的建表语句。但是这个用Java怎么实现">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NoYXduNTIwL3N0b3JhZ2UvbWFzdGVyL3BpY3R1cmVzL3Nob3ctY3JlYXRlLXRhYmxlLnBuZw">
 
 
 
@@ -112,7 +116,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/04/Java Web项目如何获取表的ddl信息/">
 
 
 
@@ -122,7 +126,7 @@
   };
 </script>
 
-  <title>分类 | Shawn Liu</title>
+  <title>Java Web项目如何获取表的ddl信息？ | Shawn Liu</title>
   
 
 
@@ -244,7 +248,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -353,95 +357,263 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/04/Java Web项目如何获取表的ddl信息/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shawn Liu">
+      <meta itemprop="description" content="Share my life, work, and study.">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn Liu">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
+          <h1 class="post-title" itemprop="name headline">Java Web项目如何获取表的ddl信息？
+
               
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              目前共计 2 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/好好学习/">好好学习</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/缤纷生活/">缤纷生活</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-04 09:01:26" itemprop="dateCreated datePublished" datetime="2019-04-04T09:01:26Z">2019-04-04</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-10 01:30:27" itemprop="dateModified" datetime="2019-07-10T01:30:27Z">2019-07-10</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/好好学习/" itemprop="url" rel="index"><span itemprop="name">好好学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/04/04/Java Web项目如何获取表的ddl信息/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/04/Java Web项目如何获取表的ddl信息/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/04/04/Java Web项目如何获取表的ddl信息/" class="post-meta-item leancloud_visitors" data-flag-title="Java Web项目如何获取表的ddl信息？">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>背景：公司项目是做MySQL数据向同构和异构数据库同步和消息订阅的。在做向消息中间件RMQ同步时，需要根据源表的表信息，在目标数据库创建一个相同的逻辑表。</p>
+<p>如果是用shell的话：<code>show create table tableName</code>就可以搞定啦。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NoYXduNTIwL3N0b3JhZ2UvbWFzdGVyL3BpY3R1cmVzL3Nob3ctY3JlYXRlLXRhYmxlLnBuZw" alt="TIM截图20190404082907"><br>这里一共有两个参数，第一个是table，第二个是create Table, 我们需要的就是create Table的建表语句。<br>但是这个用Java怎么实现呢？</p>
+<a id="more"></a>
+
+<p>Mybatis这块暂且还不知道怎么实现，先通过jdbc来实现查询表的ddl语句。<br>思路一：通过执行<code>show create table tableName</code><br>思路二：<code>show create table tablename</code> 和<code>show databases</code> 可能查的是MySQL的数据库information_schema。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> information_schema.columns <span class="keyword">where</span> TABLE_SCHEMA = <span class="string">"test"</span> <span class="keyword">AND</span> TABLE_NAME = <span class="string">"example"</span> <span class="keyword">LIMIT</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> information_schema.tables <span class="keyword">where</span> TABLE_SCHEMA = <span class="string">"test"</span> <span class="keyword">AND</span> TABLE_NAME = <span class="string">"example"</span> <span class="keyword">LIMIT</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以根据以上等信息去组装ddl语句，比较复杂，而且账号的权限不一定够。所以这里按思路一的方式。<br>首先是数据库的连接：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DBUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(DBUtil.class);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DRIVER = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String USER = <span class="string">"root"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PASSWORD = <span class="string">"admin"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DATABASE = <span class="string">"jdbc:mysql://127.0.0.1:3306/TEST"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Connection connection = <span class="keyword">null</span>;</span><br><span class="line">        String URL = DATABASE +<span class="string">"?characterEncoding=UTF-8"</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Class.forName(DRIVER);</span><br><span class="line">            connection = DriverManager.getConnection(URL,USER,PASSWORD);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException | SQLException e) &#123;</span><br><span class="line">            logger.error(URL + <span class="string">"连接MySQL数据库失败！"</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> connection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取ddl语句的实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDB</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String tableName = <span class="string">"example"</span>;</span><br><span class="line">    Connection conn = DBUtil.getConnection();</span><br><span class="line">    String sql = String.format(<span class="string">"SHOW CREATE TABLE %s"</span>, tableName);<span class="comment">//查询sql</span></span><br><span class="line">    <span class="comment">//String sql = "SHOW CREATE TABLE ?";</span></span><br><span class="line">    PreparedStatement ps = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ps = conn.prepareStatement(sql);</span><br><span class="line">        <span class="comment">//ps.setString(1, tableName);</span></span><br><span class="line">        ResultSet resultSet = ps.executeQuery();</span><br><span class="line">        <span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">            System.out.println(resultSet.getString(<span class="number">1</span>));<span class="comment">//第一个参数获取的是tableName</span></span><br><span class="line">            System.out.println(resultSet.getString(<span class="number">2</span>));<span class="comment">//第二个参数获取的是表的ddl语句</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != ps)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                ps.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != conn) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查询结果:<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly93czMuc2luYWltZy5jbi9sYXJnZS9iNzI3YzY1M2x5MWcxcWJsaGZicTRqMjBtbTA0aW14OC5qcGc" alt="TIM截图20190404085841"></p>
+<p><strong>注意</strong>：这里用<code>ps.setString()</code> 会在tableName上加上引号，导致MySQLSyntaxErrorException。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="string">'tableName'</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&apos;example&apos;&apos; at line 1</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Shawn Liu wechat" style="width: 200px; max-width: 100%;">
+  <div></div>
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/JDBC/" rel="tag"># JDBC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/Thread 源码阅读/" rel="next" title="Thread 源码阅读">
+                <i class="fa fa-chevron-left"></i> Thread 源码阅读
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/10/JAVA如何实现原子操作/" rel="prev" title="JAVA如何实现原子操作？">
+                JAVA如何实现原子操作？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -770,6 +942,8 @@
 
 
 
+
+  
 
 
   
