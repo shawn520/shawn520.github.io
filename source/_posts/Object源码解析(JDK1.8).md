@@ -19,7 +19,7 @@ Object类是Java中所有类的基类，在编译时会自动导入，位于java
 
 Object类方法说明：
 
-Object类中的方法大部分都是native方法，用此关键字修饰的方法是java中的本地方法，一般都是用C/C++语言实现的。
+Object类中的方法大部分都是native方法（如上图中方法前有一个绿色的实心小圆圈，圆圈的右上角有大写字母N，表示该方法是一个native方法），用此关键字修饰的方法是java中的本地方法，一般都是用C/C++语言实现的。
 
 
 
@@ -106,7 +106,7 @@ private static native void registerNatives();
     public native int hashCode();
 ```
 
-返回当前对象 的hash code。
+`Object类`中的`hashcode()`方法用来鉴定两个对象是否相等，返回对象在内存中地址转换成的一个 `int`类型的值。如果没有重写`hashcode()`方法，任何对象的`hashcode()`方法都是不相等的。
 
 ### `equals()`方法
 
@@ -141,7 +141,7 @@ private static native void registerNatives();
     }
 ```
 
-如果当前对象与传入的对象相同，则返回true，否则返回false。
+`Object类`中的`equals()`方法用来判断两个对象是否相等。如果当前对象与传入的对象相同，则返回true，否则返回false。
 
 注意：这个`equals()`方法没有被final关键字修饰，也就是说可以被子类重写，比如说String类型里面重写了`equals()`方法，如下：
 
@@ -162,14 +162,14 @@ private static native void registerNatives();
      * @see  #equalsIgnoreCase(String)
      */
     public boolean equals(Object anObject) {
-        //如果对象相等的话，直接返回false
+        //如果对象相等的话，直接返回true
         if (this == anObject) {
             return true;
         }
         /**
     	 * 如果对象不相同，则比较String中的value值是否相同。
      	 * 首先判断传入的对象是不是String类型的实例：
-    	 * 如果是，接着逐一比较字符串里的字符是否相同，如果不同，直接返回false。
+    	 * 如果是，将字符串转换成字符数组接着逐一比较数组里的字符是否相同，如果不同，直接返回false。
     	 * 遍历结束，则表示相同，返回true。
     	 * */
         if (anObject instanceof String) {
@@ -193,7 +193,7 @@ private static native void registerNatives();
 
 如果传入的对象和当前对象是同一个对象，返回true；如果传入的对象是String类型的实例，则判断传入对象的String和当前String是否相等，如果相等，则返回true，否则返回false。
 
-`instanceof `关键字的作用：判断左边的对象是否是右边类的实例。
+`instanceof `关键字的作用：判断左边的对象是否是右边类的实例，例如 `objectA.instanceof(ClassB)`判断对象A是否是类B的实例，如果是则返回`true`，否则返回`false`。
 
 ### `clone()`方法
 
@@ -242,7 +242,7 @@ private static native void registerNatives();
     }
 ```
 
-返回表示当前对象的字符串，类名@`hashCode`的十六进制表示。推荐所有的子类都重写这个方法。
+返回表示当前对象的字符串，字符串的形式是类名@`hashCode`的十六进制表示，比如objectA是classB的实例，ObjectA的hashCode为c,而c的十六进制为d,则调用ObjectA的`toString()`方法返回ClassB@d。推荐所有的子类都重写这个方法。
 
 ### `notify()`方法
 
@@ -282,7 +282,7 @@ private static native void registerNatives();
     public final native void notify();
 ```
 
-唤醒在该对象监视器里等待的一个线程。
+唤醒在该对象监视器(Monitor)里等待的一个线程。
 
 ### `notifyAll()`方法
 
