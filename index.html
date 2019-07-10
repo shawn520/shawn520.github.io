@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-09 14:20:44" itemprop="dateModified" datetime="2019-07-09T14:20:44Z">2019-07-09</time>
+                <time title="修改时间：2019-07-10 01:28:31" itemprop="dateModified" datetime="2019-07-10T01:28:31Z">2019-07-10</time>
               </span>
             
           
@@ -632,7 +632,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-09 14:20:44" itemprop="dateModified" datetime="2019-07-09T14:20:44Z">2019-07-09</time>
+                <time title="修改时间：2019-07-10 01:28:31" itemprop="dateModified" datetime="2019-07-10T01:28:31Z">2019-07-10</time>
               </span>
             
           
@@ -831,7 +831,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-09 14:20:44" itemprop="dateModified" datetime="2019-07-09T14:20:44Z">2019-07-09</time>
+                <time title="修改时间：2019-07-10 01:28:31" itemprop="dateModified" datetime="2019-07-10T01:28:31Z">2019-07-10</time>
               </span>
             
           
@@ -972,6 +972,207 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/Object源码解析(JDK1.8)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shawn Liu">
+      <meta itemprop="description" content="Share my life, work, and study.">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/21/Object源码解析(JDK1.8)/" class="post-title-link" itemprop="url">Object源码解析(JDK1.8)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-21 10:45:26" itemprop="dateCreated datePublished" datetime="2018-10-21T10:45:26Z">2018-10-21</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-10 01:28:31" itemprop="dateModified" datetime="2019-07-10T01:28:31Z">2019-07-10</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/好好学习/" itemprop="url" rel="index"><span itemprop="name">好好学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2018/10/21/Object源码解析(JDK1.8)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/21/Object源码解析(JDK1.8)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/10/21/Object源码解析(JDK1.8)/" class="post-meta-item leancloud_visitors" data-flag-title="Object源码解析(JDK1.8)">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Object源码解析-JDK1-8"><a href="#Object源码解析-JDK1-8" class="headerlink" title="Object源码解析(JDK1.8)"></a>Object源码解析(JDK1.8)</h1><p>Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。<strong>这里写的代码是JDK8中的，其他版本的JDK可能略有不同。</strong>   包含的方法如下图：</p>
+<p>所有方法按照字母<code>a-z</code>排序  </p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTgvMTAvMjEvNWJjYmYyYTc5ZDM4NC5wbmc" alt="object.png"></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/21/Object源码解析(JDK1.8)/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1032,7 +1233,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-09 14:20:44" itemprop="dateModified" datetime="2019-07-09T14:20:44Z">2019-07-09</time>
+                <time title="修改时间：2019-07-10 01:28:31" itemprop="dateModified" datetime="2019-07-10T01:28:31Z">2019-07-10</time>
               </span>
             
           
@@ -1200,7 +1401,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

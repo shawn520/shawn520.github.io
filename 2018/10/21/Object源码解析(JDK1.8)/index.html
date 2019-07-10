@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/favicon/favicon.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Object源码解析(JDK1.8)Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。这里写的代码是JDK8中的，其他版本的JDK可能略有不同。   包含的方法如下图： 所有方法按照字母a-z排序">
+<meta name="keywords" content="JDK源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Object源码解析(JDK1.8)">
+<meta property="og:url" content="http://yoursite.com/2018/10/21/Object源码解析(JDK1.8)/index.html">
+<meta property="og:site_name" content="Shawn Liu">
+<meta property="og:description" content="Object源码解析(JDK1.8)Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。这里写的代码是JDK8中的，其他版本的JDK可能略有不同。   包含的方法如下图： 所有方法按照字母a-z排序">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTgvMTAvMjEvNWJjYmYyYTc5ZDM4NC5wbmc">
+<meta property="og:updated_time" content="2019-07-10T01:28:31.490Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Object源码解析(JDK1.8)">
+<meta name="twitter:description" content="Object源码解析(JDK1.8)Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。这里写的代码是JDK8中的，其他版本的JDK可能略有不同。   包含的方法如下图： 所有方法按照字母a-z排序">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTgvMTAvMjEvNWJjYmYyYTc5ZDM4NC5wbmc">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2018/10/21/Object源码解析(JDK1.8)/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Object源码解析(JDK1.8) | Shawn Liu</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shawn Liu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">NOTE</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/shawn520" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/Object源码解析(JDK1.8)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shawn Liu">
+      <meta itemprop="description" content="Share my life, work, and study.">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Object源码解析(JDK1.8)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-21 10:45:26" itemprop="dateCreated datePublished" datetime="2018-10-21T10:45:26Z">2018-10-21</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-10 01:28:31" itemprop="dateModified" datetime="2019-07-10T01:28:31Z">2019-07-10</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/好好学习/" itemprop="url" rel="index"><span itemprop="name">好好学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2018/10/21/Object源码解析(JDK1.8)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/21/Object源码解析(JDK1.8)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/10/21/Object源码解析(JDK1.8)/" class="post-meta-item leancloud_visitors" data-flag-title="Object源码解析(JDK1.8)">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Object源码解析-JDK1-8"><a href="#Object源码解析-JDK1-8" class="headerlink" title="Object源码解析(JDK1.8)"></a>Object源码解析(JDK1.8)</h1><p>Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。<strong>这里写的代码是JDK8中的，其他版本的JDK可能略有不同。</strong>   包含的方法如下图：</p>
+<p>所有方法按照字母<code>a-z</code>排序  </p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTgvMTAvMjEvNWJjYmYyYTc5ZDM4NC5wbmc" alt="object.png"></p>
+<a id="more"></a>
+
+<p>Object类方法说明：</p>
+<p>Object类中的方法大部分都是native方法，用此关键字修饰的方法是java中的本地方法，一般都是用C/C++语言实现的。</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>Object类中没有显示的提供构造方法，是编译器默认提供的。</p>
+<h3 id="registerNatives-方法"><a href="#registerNatives-方法" class="headerlink" title="registerNatives()方法"></a><code>registerNatives()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">registerNatives</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        registerNatives();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>registerNatives()</code>是一个本地方法，具体是用C/C++在DLL中实现的，在类加载的时候执行。</p>
+<h3 id="getClass-方法"><a href="#getClass-方法" class="headerlink" title="getClass()方法"></a><code>getClass()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns the runtime class of this &#123;<span class="doctag">@code</span> Object&#125;. The returned</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Class&#125; object is the object that is locked by &#123;<span class="doctag">@code</span></span></span><br><span class="line"><span class="comment"> * static synchronized&#125; methods of the represented class.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;&lt;b&gt;The actual result type is &#123;<span class="doctag">@code</span> Class&lt;? extends |X|&gt;&#125;</span></span><br><span class="line"><span class="comment"> * where &#123;<span class="doctag">@code</span> |X|&#125; is the erasure of the static type of the</span></span><br><span class="line"><span class="comment"> * expression on which &#123;<span class="doctag">@code</span> getClass&#125; is called.&lt;/b&gt; For</span></span><br><span class="line"><span class="comment"> * example, no cast is required in this code fragment:&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Number n = 0;                             &#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Class&lt;? extends Number&gt; c = n.getClass(); &#125;</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> The &#123;<span class="doctag">@code</span> Class&#125; object that represents the runtime</span></span><br><span class="line"><span class="comment"> *         class of this object.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@jls</span> 15.8.2 Class Literals</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> Class&lt;?&gt; getClass();</span><br></pre></td></tr></table></figure>
+
+<p>返回当前对象运行时的类，<code>final</code>关键字修饰说明这个方法不能被子类重写。</p>
+<h3 id="hashcode-方法"><a href="#hashcode-方法" class="headerlink" title="hashcode()方法"></a><code>hashcode()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a hash code value for the object. This method is</span></span><br><span class="line"><span class="comment"> * supported for the benefit of hash tables such as those provided by</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.util.HashMap&#125;.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The general contract of &#123;<span class="doctag">@code</span> hashCode&#125; is:</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;Whenever it is invoked on the same object more than once during</span></span><br><span class="line"><span class="comment"> *     an execution of a Java application, the &#123;<span class="doctag">@code</span> hashCode&#125; method</span></span><br><span class="line"><span class="comment"> *     must consistently return the same integer, provided no information</span></span><br><span class="line"><span class="comment"> *     used in &#123;<span class="doctag">@code</span> equals&#125; comparisons on the object is modified.</span></span><br><span class="line"><span class="comment"> *     This integer need not remain consistent from one execution of an</span></span><br><span class="line"><span class="comment"> *     application to another execution of the same application.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;If two objects are equal according to the &#123;<span class="doctag">@code</span> equals(Object)&#125;</span></span><br><span class="line"><span class="comment"> *     method, then calling the &#123;<span class="doctag">@code</span> hashCode&#125; method on each of</span></span><br><span class="line"><span class="comment"> *     the two objects must produce the same integer result.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;It is &lt;em&gt;not&lt;/em&gt; required that if two objects are unequal</span></span><br><span class="line"><span class="comment"> *     according to the &#123;<span class="doctag">@link</span> java.lang.Object#equals(java.lang.Object)&#125;</span></span><br><span class="line"><span class="comment"> *     method, then calling the &#123;<span class="doctag">@code</span> hashCode&#125; method on each of the</span></span><br><span class="line"><span class="comment"> *     two objects must produce distinct integer results.  However, the</span></span><br><span class="line"><span class="comment"> *     programmer should be aware that producing distinct integer results</span></span><br><span class="line"><span class="comment"> *     for unequal objects may improve the performance of hash tables.</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * As much as is reasonably practical, the hashCode method defined by</span></span><br><span class="line"><span class="comment"> * class &#123;<span class="doctag">@code</span> Object&#125; does return distinct integers for distinct</span></span><br><span class="line"><span class="comment"> * objects. (This is typically implemented by converting the internal</span></span><br><span class="line"><span class="comment"> * address of the object into an integer, but this implementation</span></span><br><span class="line"><span class="comment"> * technique is not required by the</span></span><br><span class="line"><span class="comment"> * Java&amp;trade; programming language.)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  a hash code value for this object.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.Object#equals(java.lang.Object)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.System#identityHashCode</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>返回当前对象 的hash code。</p>
+<h3 id="equals-方法"><a href="#equals-方法" class="headerlink" title="equals()方法"></a><code>equals()</code>方法</h3><p>入参：Object</p>
+<p>返回值：Boolean类型，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Indicates whether some other object is "equal to" this one.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The &#123;<span class="doctag">@code</span> equals&#125; method for class &#123;<span class="doctag">@code</span> Object&#125; implements</span></span><br><span class="line"><span class="comment"> * the most discriminating possible equivalence relation on objects;</span></span><br><span class="line"><span class="comment"> * that is, for any non-null reference values &#123;<span class="doctag">@code</span> x&#125; and</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> y&#125;, this method returns &#123;<span class="doctag">@code</span> true&#125; if and only</span></span><br><span class="line"><span class="comment"> * if &#123;<span class="doctag">@code</span> x&#125; and &#123;<span class="doctag">@code</span> y&#125; refer to the same object</span></span><br><span class="line"><span class="comment"> * (&#123;<span class="doctag">@code</span> x == y&#125; has the value &#123;<span class="doctag">@code</span> true&#125;).</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Note that it is generally necessary to override the &#123;<span class="doctag">@code</span> hashCode&#125;</span></span><br><span class="line"><span class="comment"> * method whenever this method is overridden, so as to maintain the</span></span><br><span class="line"><span class="comment"> * general contract for the &#123;<span class="doctag">@code</span> hashCode&#125; method, which states</span></span><br><span class="line"><span class="comment"> * that equal objects must have equal hash codes.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   obj   the reference object with which to compare.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  &#123;<span class="doctag">@code</span> true&#125; if this object is the same as the obj</span></span><br><span class="line"><span class="comment"> *          argument; &#123;<span class="doctag">@code</span> false&#125; otherwise.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     #hashCode()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.util.HashMap</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果当前对象与传入的对象相同，则返回true，否则返回false。</p>
+<p>注意：这个<code>equals()</code>方法没有被final关键字修饰，也就是说可以被子类重写，比如说String类型里面重写了<code>equals()</code>方法，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Compares this string to the specified object.  The result is &#123;<span class="doctag">@code</span></span></span><br><span class="line"><span class="comment"> * true&#125; if and only if the argument is not &#123;<span class="doctag">@code</span> null&#125; and is a &#123;<span class="doctag">@code</span></span></span><br><span class="line"><span class="comment"> * String&#125; object that represents the same sequence of characters as this</span></span><br><span class="line"><span class="comment"> * object.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  anObject</span></span><br><span class="line"><span class="comment"> *         The object to compare this &#123;<span class="doctag">@code</span> String&#125; against</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  &#123;<span class="doctag">@code</span> true&#125; if the given object represents a &#123;<span class="doctag">@code</span> String&#125;</span></span><br><span class="line"><span class="comment"> *          equivalent to this string, &#123;<span class="doctag">@code</span> false&#125; otherwise</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>  #compareTo(String)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>  #equalsIgnoreCase(String)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//如果对象相等的话，直接返回false</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 如果对象不相同，则比较String中的value值是否相同。</span></span><br><span class="line"><span class="comment"> 	 * 首先判断传入的对象是不是String类型的实例：</span></span><br><span class="line"><span class="comment">	 * 如果是，接着逐一比较字符串里的字符是否相同，如果不同，直接返回false。</span></span><br><span class="line"><span class="comment">	 * 遍历结束，则表示相同，返回true。</span></span><br><span class="line"><span class="comment">	 * */</span></span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">        String anotherString = (String)anObject;</span><br><span class="line">        <span class="keyword">int</span> n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="keyword">char</span> v1[] = value;</span><br><span class="line">            <span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果传入的对象和当前对象是同一个对象，返回true；如果传入的对象是String类型的实例，则判断传入对象的String和当前String是否相等，如果相等，则返回true，否则返回false。</p>
+<p><code>instanceof</code>关键字的作用：判断左边的对象是否是右边类的实例。</p>
+<h3 id="clone-方法"><a href="#clone-方法" class="headerlink" title="clone()方法"></a><code>clone()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates and returns a copy of this object.  </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>     a clone of this instance.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  CloneNotSupportedException  if the object's class does not</span></span><br><span class="line"><span class="comment"> *               support the &#123;<span class="doctag">@code</span> Cloneable&#125; interface. Subclasses</span></span><br><span class="line"><span class="comment"> *               that override the &#123;<span class="doctag">@code</span> clone&#125; method can also</span></span><br><span class="line"><span class="comment"> *               throw this exception to indicate that an instance cannot</span></span><br><span class="line"><span class="comment"> *               be cloned.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> java.lang.Cloneable</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">native</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException</span>;</span><br></pre></td></tr></table></figure>
+
+<p>返回当前实例的克隆对象。</p>
+<h3 id="toString-方法"><a href="#toString-方法" class="headerlink" title="toString()方法"></a><code>toString()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a string representation of the object. In general, the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> toString&#125; method returns a string that</span></span><br><span class="line"><span class="comment"> * "textually represents" this object. The result should</span></span><br><span class="line"><span class="comment"> * be a concise but informative representation that is easy for a</span></span><br><span class="line"><span class="comment"> * person to read.</span></span><br><span class="line"><span class="comment"> * It is recommended that all subclasses override this method.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The &#123;<span class="doctag">@code</span> toString&#125; method for class &#123;<span class="doctag">@code</span> Object&#125;</span></span><br><span class="line"><span class="comment"> * returns a string consisting of the name of the class of which the</span></span><br><span class="line"><span class="comment"> * object is an instance, the at-sign character `&#123;<span class="doctag">@code</span> @&#125;', and</span></span><br><span class="line"><span class="comment"> * the unsigned hexadecimal representation of the hash code of the</span></span><br><span class="line"><span class="comment"> * object. In other words, this method returns a string equal to the</span></span><br><span class="line"><span class="comment"> * value of:</span></span><br><span class="line"><span class="comment"> * &lt;blockquote&gt;</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> * getClass().getName() + '@' + Integer.toHexString(hashCode())</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;&lt;/blockquote&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  a string representation of the object.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getClass().getName() + <span class="string">"@"</span> + Integer.toHexString(hashCode());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回表示当前对象的字符串，类名@<code>hashCode</code>的十六进制表示。推荐所有的子类都重写这个方法。</p>
+<h3 id="notify-方法"><a href="#notify-方法" class="headerlink" title="notify()方法"></a><code>notify()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Wakes up a single thread that is waiting on this object's</span></span><br><span class="line"><span class="comment"> * monitor. If any threads are waiting on this object, one of them</span></span><br><span class="line"><span class="comment"> * is chosen to be awakened. The choice is arbitrary and occurs at</span></span><br><span class="line"><span class="comment"> * the discretion of the implementation. A thread waits on an object's</span></span><br><span class="line"><span class="comment"> * monitor by calling one of the &#123;<span class="doctag">@code</span> wait&#125; methods.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The awakened thread will not be able to proceed until the current</span></span><br><span class="line"><span class="comment"> * thread relinquishes the lock on this object. The awakened thread will</span></span><br><span class="line"><span class="comment"> * compete in the usual manner with any other threads that might be</span></span><br><span class="line"><span class="comment"> * actively competing to synchronize on this object; for example, the</span></span><br><span class="line"><span class="comment"> * awakened thread enjoys no reliable privilege or disadvantage in being</span></span><br><span class="line"><span class="comment"> * the next thread to lock this object.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * This method should only be called by a thread that is the owner</span></span><br><span class="line"><span class="comment"> * of this object's monitor. A thread becomes the owner of the</span></span><br><span class="line"><span class="comment"> * object's monitor in one of three ways:</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;By executing a synchronized instance method of that object.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;By executing the body of a &#123;<span class="doctag">@code</span> synchronized&#125; statement</span></span><br><span class="line"><span class="comment"> *     that synchronizes on the object.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;For objects of type &#123;<span class="doctag">@code</span> Class,&#125; by executing a</span></span><br><span class="line"><span class="comment"> *     synchronized static method of that class.</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Only one thread at a time can own an object's monitor.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  IllegalMonitorStateException  if the current thread is not</span></span><br><span class="line"><span class="comment"> *               the owner of this object's monitor.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#notifyAll()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#wait()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>唤醒在该对象监视器里等待的一个线程。</p>
+<h3 id="notifyAll-方法"><a href="#notifyAll-方法" class="headerlink" title="notifyAll()方法"></a><code>notifyAll()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Wakes up all threads that are waiting on this object's monitor. A</span></span><br><span class="line"><span class="comment"> * thread waits on an object's monitor by calling one of the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> wait&#125; methods.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The awakened threads will not be able to proceed until the current</span></span><br><span class="line"><span class="comment"> * thread relinquishes the lock on this object. The awakened threads</span></span><br><span class="line"><span class="comment"> * will compete in the usual manner with any other threads that might</span></span><br><span class="line"><span class="comment"> * be actively competing to synchronize on this object; for example,</span></span><br><span class="line"><span class="comment"> * the awakened threads enjoy no reliable privilege or disadvantage in</span></span><br><span class="line"><span class="comment"> * being the next thread to lock this object.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * This method should only be called by a thread that is the owner</span></span><br><span class="line"><span class="comment"> * of this object's monitor. See the &#123;<span class="doctag">@code</span> notify&#125; method for a</span></span><br><span class="line"><span class="comment"> * description of the ways in which a thread can become the owner of</span></span><br><span class="line"><span class="comment"> * a monitor.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  IllegalMonitorStateException  if the current thread is not</span></span><br><span class="line"><span class="comment"> *               the owner of this object's monitor.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#notify()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#wait()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notifyAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>唤醒当前对象监视器下的所有线程。</p>
+<h3 id="wait-long-方法"><a href="#wait-long-方法" class="headerlink" title="wait(long)方法"></a><code>wait(long)</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Causes the current thread to wait until either another thread invokes the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.lang.Object#notify()&#125; method or the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.lang.Object#notifyAll()&#125; method for this object, or a</span></span><br><span class="line"><span class="comment"> * specified amount of time has elapsed.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The current thread must own this object's monitor.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * This method causes the current thread (call it &lt;var&gt;T&lt;/var&gt;) to</span></span><br><span class="line"><span class="comment"> * place itself in the wait set for this object and then to relinquish</span></span><br><span class="line"><span class="comment"> * any and all synchronization claims on this object. Thread &lt;var&gt;T&lt;/var&gt;</span></span><br><span class="line"><span class="comment"> * becomes disabled for thread scheduling purposes and lies dormant</span></span><br><span class="line"><span class="comment"> * until one of four things happens:</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;Some other thread invokes the &#123;<span class="doctag">@code</span> notify&#125; method for this</span></span><br><span class="line"><span class="comment"> * object and thread &lt;var&gt;T&lt;/var&gt; happens to be arbitrarily chosen as</span></span><br><span class="line"><span class="comment"> * the thread to be awakened.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;Some other thread invokes the &#123;<span class="doctag">@code</span> notifyAll&#125; method for this</span></span><br><span class="line"><span class="comment"> * object.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;Some other thread &#123;<span class="doctag">@linkplain</span> Thread#interrupt() interrupts&#125;</span></span><br><span class="line"><span class="comment"> * thread &lt;var&gt;T&lt;/var&gt;.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;The specified amount of real time has elapsed, more or less.  If</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> timeout&#125; is zero, however, then real time is not taken into</span></span><br><span class="line"><span class="comment"> * consideration and the thread simply waits until notified.</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> * The thread &lt;var&gt;T&lt;/var&gt; is then removed from the wait set for this</span></span><br><span class="line"><span class="comment"> * object and re-enabled for thread scheduling. It then competes in the</span></span><br><span class="line"><span class="comment"> * usual manner with other threads for the right to synchronize on the</span></span><br><span class="line"><span class="comment"> * object; once it has gained control of the object, all its</span></span><br><span class="line"><span class="comment"> * synchronization claims on the object are restored to the status quo</span></span><br><span class="line"><span class="comment"> * ante - that is, to the situation as of the time that the &#123;<span class="doctag">@code</span> wait&#125;</span></span><br><span class="line"><span class="comment"> * method was invoked. Thread &lt;var&gt;T&lt;/var&gt; then returns from the</span></span><br><span class="line"><span class="comment"> * invocation of the &#123;<span class="doctag">@code</span> wait&#125; method. Thus, on return from the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> wait&#125; method, the synchronization state of the object and of</span></span><br><span class="line"><span class="comment"> * thread &#123;<span class="doctag">@code</span> T&#125; is exactly as it was when the &#123;<span class="doctag">@code</span> wait&#125; method</span></span><br><span class="line"><span class="comment"> * was invoked.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * A thread can also wake up without being notified, interrupted, or</span></span><br><span class="line"><span class="comment"> * timing out, a so-called &lt;i&gt;spurious wakeup&lt;/i&gt;.  While this will rarely</span></span><br><span class="line"><span class="comment"> * occur in practice, applications must guard against it by testing for</span></span><br><span class="line"><span class="comment"> * the condition that should have caused the thread to be awakened, and</span></span><br><span class="line"><span class="comment"> * continuing to wait if the condition is not satisfied.  In other words,</span></span><br><span class="line"><span class="comment"> * waits should always occur in loops, like this one:</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> *     synchronized (obj) &#123;</span></span><br><span class="line"><span class="comment"> *         while (&amp;lt;condition does not hold&amp;gt;)</span></span><br><span class="line"><span class="comment"> *             obj.wait(timeout);</span></span><br><span class="line"><span class="comment"> *         ... // Perform action appropriate to condition</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> * (For more information on this topic, see Section 3.2.3 in Doug Lea's</span></span><br><span class="line"><span class="comment"> * "Concurrent Programming in Java (Second Edition)" (Addison-Wesley,</span></span><br><span class="line"><span class="comment"> * 2000), or Item 50 in Joshua Bloch's "Effective Java Programming</span></span><br><span class="line"><span class="comment"> * Language Guide" (Addison-Wesley, 2001).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;If the current thread is &#123;<span class="doctag">@linkplain</span> java.lang.Thread#interrupt()</span></span><br><span class="line"><span class="comment"> * interrupted&#125; by any thread before or while it is waiting, then an</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> InterruptedException&#125; is thrown.  This exception is not</span></span><br><span class="line"><span class="comment"> * thrown until the lock status of this object has been restored as</span></span><br><span class="line"><span class="comment"> * described above.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Note that the &#123;<span class="doctag">@code</span> wait&#125; method, as it places the current thread</span></span><br><span class="line"><span class="comment"> * into the wait set for this object, unlocks only this object; any</span></span><br><span class="line"><span class="comment"> * other objects on which the current thread may be synchronized remain</span></span><br><span class="line"><span class="comment"> * locked while the thread waits.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * This method should only be called by a thread that is the owner</span></span><br><span class="line"><span class="comment"> * of this object's monitor. See the &#123;<span class="doctag">@code</span> notify&#125; method for a</span></span><br><span class="line"><span class="comment"> * description of the ways in which a thread can become the owner of</span></span><br><span class="line"><span class="comment"> * a monitor.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>      timeout   the maximum time to wait in milliseconds.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  IllegalArgumentException      if the value of timeout is</span></span><br><span class="line"><span class="comment"> *               negative.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  IllegalMonitorStateException  if the current thread is not</span></span><br><span class="line"><span class="comment"> *               the owner of the object's monitor.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  InterruptedException if any thread interrupted the</span></span><br><span class="line"><span class="comment"> *             current thread before or while the current thread</span></span><br><span class="line"><span class="comment"> *             was waiting for a notification.  The &lt;i&gt;interrupted</span></span><br><span class="line"><span class="comment"> *             status&lt;/i&gt; of the current thread is cleared when</span></span><br><span class="line"><span class="comment"> *             this exception is thrown.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#notify()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#notifyAll()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br></pre></td></tr></table></figure>
+
+<p>使当前线程等待直到另外一个线程调用等待线程的<code>notify()</code>方法或者<code>notifyAll()</code>方法，或者等待指定的时间。</p>
+<h3 id="wait-long-int-方法"><a href="#wait-long-int-方法" class="headerlink" title="wait(long,int)方法"></a><code>wait(long,int)</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Causes the current thread to wait until another thread invokes the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.lang.Object#notify()&#125; method or the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.lang.Object#notifyAll()&#125; method for this object, or</span></span><br><span class="line"><span class="comment"> * some other thread interrupts the current thread, or a certain</span></span><br><span class="line"><span class="comment"> * amount of real time has elapsed.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * This method is similar to the &#123;<span class="doctag">@code</span> wait&#125; method of one</span></span><br><span class="line"><span class="comment"> * argument, but it allows finer control over the amount of time to</span></span><br><span class="line"><span class="comment"> * wait for a notification before giving up. The amount of real time,</span></span><br><span class="line"><span class="comment"> * measured in nanoseconds, is given by:</span></span><br><span class="line"><span class="comment"> * &lt;blockquote&gt;</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> * 1000000*timeout+nanos&lt;/pre&gt;&lt;/blockquote&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * In all other respects, this method does the same thing as the</span></span><br><span class="line"><span class="comment"> * method &#123;<span class="doctag">@link</span> #wait(long)&#125; of one argument. In particular,</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> wait(0, 0)&#125; means the same thing as &#123;<span class="doctag">@code</span> wait(0)&#125;.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The current thread must own this object's monitor. The thread</span></span><br><span class="line"><span class="comment"> * releases ownership of this monitor and waits until either of the</span></span><br><span class="line"><span class="comment"> * following two conditions has occurred:</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;Another thread notifies threads waiting on this object's monitor</span></span><br><span class="line"><span class="comment"> *     to wake up either through a call to the &#123;<span class="doctag">@code</span> notify&#125; method</span></span><br><span class="line"><span class="comment"> *     or the &#123;<span class="doctag">@code</span> notifyAll&#125; method.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;The timeout period, specified by &#123;<span class="doctag">@code</span> timeout&#125;</span></span><br><span class="line"><span class="comment"> *     milliseconds plus &#123;<span class="doctag">@code</span> nanos&#125; nanoseconds arguments, has</span></span><br><span class="line"><span class="comment"> *     elapsed.</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The thread then waits until it can re-obtain ownership of the</span></span><br><span class="line"><span class="comment"> * monitor and resumes execution.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * As in the one argument version, interrupts and spurious wakeups are</span></span><br><span class="line"><span class="comment"> * possible, and this method should always be used in a loop:</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> *     synchronized (obj) &#123;</span></span><br><span class="line"><span class="comment"> *         while (&amp;lt;condition does not hold&amp;gt;)</span></span><br><span class="line"><span class="comment"> *             obj.wait(timeout, nanos);</span></span><br><span class="line"><span class="comment"> *         ... // Perform action appropriate to condition</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> * This method should only be called by a thread that is the owner</span></span><br><span class="line"><span class="comment"> * of this object's monitor. See the &#123;<span class="doctag">@code</span> notify&#125; method for a</span></span><br><span class="line"><span class="comment"> * description of the ways in which a thread can become the owner of</span></span><br><span class="line"><span class="comment"> * a monitor.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>      timeout   the maximum time to wait in milliseconds.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>      nanos      additional time, in nanoseconds range</span></span><br><span class="line"><span class="comment"> *                       0-999999.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  IllegalArgumentException      if the value of timeout is</span></span><br><span class="line"><span class="comment"> *                      negative or the value of nanos is</span></span><br><span class="line"><span class="comment"> *                      not in the range 0-999999.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  IllegalMonitorStateException  if the current thread is not</span></span><br><span class="line"><span class="comment"> *               the owner of this object's monitor.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  InterruptedException if any thread interrupted the</span></span><br><span class="line"><span class="comment"> *             current thread before or while the current thread</span></span><br><span class="line"><span class="comment"> *             was waiting for a notification.  The &lt;i&gt;interrupted</span></span><br><span class="line"><span class="comment"> *             status&lt;/i&gt; of the current thread is cleared when</span></span><br><span class="line"><span class="comment"> *             this exception is thrown.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout, <span class="keyword">int</span> nanos)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timeout &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"timeout value is negative"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nanos &lt; <span class="number">0</span> || nanos &gt; <span class="number">999999</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">                            <span class="string">"nanosecond timeout value out of range"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nanos &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        timeout++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    wait(timeout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>和只有一个入参的<code>wait(long)</code>方法类似，但它允许更精细的时间控制，以纳秒进行实时的统计。</p>
+<h3 id="wait-方法"><a href="#wait-方法" class="headerlink" title="wait()方法"></a><code>wait()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Causes the current thread to wait until another thread invokes the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.lang.Object#notify()&#125; method or the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.lang.Object#notifyAll()&#125; method for this object.</span></span><br><span class="line"><span class="comment"> * In other words, this method behaves exactly as if it simply</span></span><br><span class="line"><span class="comment"> * performs the call &#123;<span class="doctag">@code</span> wait(0)&#125;.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The current thread must own this object's monitor. The thread</span></span><br><span class="line"><span class="comment"> * releases ownership of this monitor and waits until another thread</span></span><br><span class="line"><span class="comment"> * notifies threads waiting on this object's monitor to wake up</span></span><br><span class="line"><span class="comment"> * either through a call to the &#123;<span class="doctag">@code</span> notify&#125; method or the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> notifyAll&#125; method. The thread then waits until it can</span></span><br><span class="line"><span class="comment"> * re-obtain ownership of the monitor and resumes execution.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * As in the one argument version, interrupts and spurious wakeups are</span></span><br><span class="line"><span class="comment"> * possible, and this method should always be used in a loop:</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> *     synchronized (obj) &#123;</span></span><br><span class="line"><span class="comment"> *         while (&amp;lt;condition does not hold&amp;gt;)</span></span><br><span class="line"><span class="comment"> *             obj.wait();</span></span><br><span class="line"><span class="comment"> *         ... // Perform action appropriate to condition</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> * This method should only be called by a thread that is the owner</span></span><br><span class="line"><span class="comment"> * of this object's monitor. See the &#123;<span class="doctag">@code</span> notify&#125; method for a</span></span><br><span class="line"><span class="comment"> * description of the ways in which a thread can become the owner of</span></span><br><span class="line"><span class="comment"> * a monitor.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  IllegalMonitorStateException  if the current thread is not</span></span><br><span class="line"><span class="comment"> *               the owner of the object's monitor.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  InterruptedException if any thread interrupted the</span></span><br><span class="line"><span class="comment"> *             current thread before or while the current thread</span></span><br><span class="line"><span class="comment"> *             was waiting for a notification.  The &lt;i&gt;interrupted</span></span><br><span class="line"><span class="comment"> *             status&lt;/i&gt; of the current thread is cleared when</span></span><br><span class="line"><span class="comment"> *             this exception is thrown.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#notify()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>        java.lang.Object#notifyAll()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    wait(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="finalize-方法"><a href="#finalize-方法" class="headerlink" title="finalize()方法"></a><code>finalize()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Called by the garbage collector on an object when garbage collection</span></span><br><span class="line"><span class="comment"> * determines that there are no more references to the object.</span></span><br><span class="line"><span class="comment"> * A subclass overrides the &#123;<span class="doctag">@code</span> finalize&#125; method to dispose of</span></span><br><span class="line"><span class="comment"> * system resources or to perform other cleanup.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The general contract of &#123;<span class="doctag">@code</span> finalize&#125; is that it is invoked</span></span><br><span class="line"><span class="comment"> * if and when the Java&amp;trade; virtual</span></span><br><span class="line"><span class="comment"> * machine has determined that there is no longer any</span></span><br><span class="line"><span class="comment"> * means by which this object can be accessed by any thread that has</span></span><br><span class="line"><span class="comment"> * not yet died, except as a result of an action taken by the</span></span><br><span class="line"><span class="comment"> * finalization of some other object or class which is ready to be</span></span><br><span class="line"><span class="comment"> * finalized. The &#123;<span class="doctag">@code</span> finalize&#125; method may take any action, including</span></span><br><span class="line"><span class="comment"> * making this object available again to other threads; the usual purpose</span></span><br><span class="line"><span class="comment"> * of &#123;<span class="doctag">@code</span> finalize&#125;, however, is to perform cleanup actions before</span></span><br><span class="line"><span class="comment"> * the object is irrevocably discarded. For example, the finalize method</span></span><br><span class="line"><span class="comment"> * for an object that represents an input/output connection might perform</span></span><br><span class="line"><span class="comment"> * explicit I/O transactions to break the connection before the object is</span></span><br><span class="line"><span class="comment"> * permanently discarded.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The &#123;<span class="doctag">@code</span> finalize&#125; method of class &#123;<span class="doctag">@code</span> Object&#125; performs no</span></span><br><span class="line"><span class="comment"> * special action; it simply returns normally. Subclasses of</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Object&#125; may override this definition.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The Java programming language does not guarantee which thread will</span></span><br><span class="line"><span class="comment"> * invoke the &#123;<span class="doctag">@code</span> finalize&#125; method for any given object. It is</span></span><br><span class="line"><span class="comment"> * guaranteed, however, that the thread that invokes finalize will not</span></span><br><span class="line"><span class="comment"> * be holding any user-visible synchronization locks when finalize is</span></span><br><span class="line"><span class="comment"> * invoked. If an uncaught exception is thrown by the finalize method,</span></span><br><span class="line"><span class="comment"> * the exception is ignored and finalization of that object terminates.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * After the &#123;<span class="doctag">@code</span> finalize&#125; method has been invoked for an object, no</span></span><br><span class="line"><span class="comment"> * further action is taken until the Java virtual machine has again</span></span><br><span class="line"><span class="comment"> * determined that there is no longer any means by which this object can</span></span><br><span class="line"><span class="comment"> * be accessed by any thread that has not yet died, including possible</span></span><br><span class="line"><span class="comment"> * actions by other objects or classes which are ready to be finalized,</span></span><br><span class="line"><span class="comment"> * at which point the object may be discarded.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The &#123;<span class="doctag">@code</span> finalize&#125; method is never invoked more than once by a Java</span></span><br><span class="line"><span class="comment"> * virtual machine for any given object.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Any exception thrown by the &#123;<span class="doctag">@code</span> finalize&#125; method causes</span></span><br><span class="line"><span class="comment"> * the finalization of this object to be halted, but is otherwise</span></span><br><span class="line"><span class="comment"> * ignored.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Throwable the &#123;<span class="doctag">@code</span> Exception&#125; raised by this method</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> java.lang.ref.WeakReference</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> java.lang.ref.PhantomReference</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@jls</span> 12.6 Finalization of Class Instances</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>JAVA内存回收机制是通过根节点到当前对象之间有没有一条引用链指向来判断对象是否可以回收的。</p>
+<p>该对象没有引用指向的时候，垃圾收集器在合适的时机调用该对象的<code>finalize()</code>方法对该对象进行回收。</p>
+<p>参考资料</p>
+<p><a href="https://blog.csdn.net/benjaminlee1/article/details/72843713" target="_blank" rel="noopener">https://blog.csdn.net/benjaminlee1/article/details/72843713</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="Shawn Liu wechat" style="width: 200px; max-width: 100%;">
+  <div></div>
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/JDK源码/" rel="tag"># JDK源码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/21/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/23/ArrayList 源码解析(JDK7)/" rel="prev" title="ArrayList 源码解析(JDK1.7)">
+                ArrayList 源码解析(JDK1.7) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Shawn Liu">
+            
+              <p class="site-author-name" itemprop="name">Shawn Liu</p>
+              <div class="site-description motion-element" itemprop="description">Share my life, work, and study.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/shawn520" title="GitHub &rarr; https://github.com/shawn520" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:liushawn@outlook.com" title="E-Mail &rarr; mailto:liushawn@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/liushawn" title="Weibo &rarr; https://weibo.com/liushawn" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/yourname" title="Google &rarr; https://plus.google.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="skype:liushawn?call|chat" title="Skype &rarr; skype:liushawn?call|chat" rel="noopener" target="_blank"><i class="fa fa-fw fa-skype"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Object源码解析-JDK1-8"><span class="nav-number">1.</span> <span class="nav-text">Object源码解析(JDK1.8)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">1.0.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#registerNatives-方法"><span class="nav-number">1.0.2.</span> <span class="nav-text">registerNatives()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getClass-方法"><span class="nav-number">1.0.3.</span> <span class="nav-text">getClass()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashcode-方法"><span class="nav-number">1.0.4.</span> <span class="nav-text">hashcode()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equals-方法"><span class="nav-number">1.0.5.</span> <span class="nav-text">equals()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clone-方法"><span class="nav-number">1.0.6.</span> <span class="nav-text">clone()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toString-方法"><span class="nav-number">1.0.7.</span> <span class="nav-text">toString()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#notify-方法"><span class="nav-number">1.0.8.</span> <span class="nav-text">notify()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#notifyAll-方法"><span class="nav-number">1.0.9.</span> <span class="nav-text">notifyAll()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-long-方法"><span class="nav-number">1.0.10.</span> <span class="nav-text">wait(long)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-long-int-方法"><span class="nav-number">1.0.11.</span> <span class="nav-text">wait(long,int)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-方法"><span class="nav-number">1.0.12.</span> <span class="nav-text">wait()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finalize-方法"><span class="nav-number">1.0.13.</span> <span class="nav-text">finalize()方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shawn Liu</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'MuIPSVOfYdO9es4JlqgQE9hd-gzGzoHsz',
+    appKey: 'LfJiNEdyo5kC7uxcRvBBMHvD',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
