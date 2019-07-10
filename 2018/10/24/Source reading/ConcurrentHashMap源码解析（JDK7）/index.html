@@ -94,20 +94,20 @@
 
 
 
-  <meta name="description" content="Thread 源码阅读">
+  <meta name="description" content="ConcurrentHashMap源码解析(JDK7)">
 <meta name="keywords" content="JDK源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thread 源码阅读">
-<meta property="og:url" content="http://yoursite.com/2019/02/21/Thread 源码阅读/index.html">
+<meta property="og:title" content="ConcurrentHashMap源码解析(JDK7)">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/Source reading/ConcurrentHashMap源码解析（JDK7）/index.html">
 <meta property="og:site_name" content="Shawn Liu">
-<meta property="og:description" content="Thread 源码阅读">
+<meta property="og:description" content="ConcurrentHashMap源码解析(JDK7)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://wx1.sinaimg.cn/large/b727c653ly1fyrcehtqfnj20a50hm0t1.jpg">
-<meta property="og:updated_time" content="2019-07-10T01:59:36.954Z">
+<meta property="og:image" content="https://i.loli.net/2018/10/23/5bced8c568df1.png">
+<meta property="og:updated_time" content="2019-07-10T05:06:54.401Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thread 源码阅读">
-<meta name="twitter:description" content="Thread 源码阅读">
-<meta name="twitter:image" content="https://wx1.sinaimg.cn/large/b727c653ly1fyrcehtqfnj20a50hm0t1.jpg">
+<meta name="twitter:title" content="ConcurrentHashMap源码解析(JDK7)">
+<meta name="twitter:description" content="ConcurrentHashMap源码解析(JDK7)">
+<meta name="twitter:image" content="https://i.loli.net/2018/10/23/5bced8c568df1.png">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/02/21/Thread 源码阅读/">
+  <link rel="canonical" href="http://yoursite.com/2018/10/24/Source reading/ConcurrentHashMap源码解析（JDK7）/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>Thread 源码阅读 | Shawn Liu</title>
+  <title>ConcurrentHashMap源码解析(JDK7) | Shawn Liu</title>
   
 
 
@@ -376,7 +376,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/Thread 源码阅读/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/Source reading/ConcurrentHashMap源码解析（JDK7）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shawn Liu">
@@ -393,7 +393,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Thread 源码阅读
+          <h1 class="post-title" itemprop="name headline">ConcurrentHashMap源码解析(JDK7)
 
               
             
@@ -419,7 +419,7 @@
                 
               
 
-              <time title="创建时间：2019-02-20 20:19:46" itemprop="dateCreated datePublished" datetime="2019-02-20T20:19:46Z">2019-02-20</time>
+              <time title="创建时间：2018-10-23 21:03:46" itemprop="dateCreated datePublished" datetime="2018-10-23T21:03:46Z">2018-10-23</time>
             </span>
           
 
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-10 01:59:36" itemprop="dateModified" datetime="2019-07-10T01:59:36Z">2019-07-10</time>
+                <time title="修改时间：2019-07-10 05:06:54" itemprop="dateModified" datetime="2019-07-10T05:06:54Z">2019-07-10</time>
               </span>
             
           
@@ -466,8 +466,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/02/21/Thread 源码阅读/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/21/Thread 源码阅读/" itemprop="commentCount"></span>
+                <a href="/2018/10/24/Source reading/ConcurrentHashMap源码解析（JDK7）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/24/Source reading/ConcurrentHashMap源码解析（JDK7）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -475,7 +475,7 @@
 
           
           
-            <span id="/2019/02/21/Thread 源码阅读/" class="post-meta-item leancloud_visitors" data-flag-title="Thread 源码阅读">
+            <span id="/2018/10/24/Source reading/ConcurrentHashMap源码解析（JDK7）/" class="post-meta-item leancloud_visitors" data-flag-title="ConcurrentHashMap源码解析(JDK7)">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -508,36 +508,31 @@
       
 
       
-        <h1 id="Thread-源码阅读"><a href="#Thread-源码阅读" class="headerlink" title="Thread 源码阅读"></a>Thread 源码阅读</h1><p><img src="https://wx1.sinaimg.cn/large/b727c653ly1fyrcehtqfnj20a50hm0t1.jpg" alt="image"></p>
+        <h1 id="ConcurrentHashMap源码解析-JDK7"><a href="#ConcurrentHashMap源码解析-JDK7" class="headerlink" title="ConcurrentHashMap源码解析(JDK7)"></a>ConcurrentHashMap源码解析(JDK7)</h1><p><img src="https://i.loli.net/2018/10/23/5bced8c568df1.png" alt="ConcurrentHashMap.png"></p>
 <a id="more"></a>
+<h2 id="Constants-常量"><a href="#Constants-常量" class="headerlink" title="Constants (常量)"></a>Constants (常量)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The default initial capacity for this table,</span></span><br><span class="line"><span class="comment"> * used when not otherwise specified in a constructor.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">16</span>;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认的最初的容量为16</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The default load factor for this table, used when not</span></span><br><span class="line"><span class="comment"> * otherwise specified in a constructor.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</span><br></pre></td></tr></table></figure>
 
-<p>所有Thread类实现了<code>Runnable</code>接口并实现了<code>run()</code>方法，为什么叫Runnable，而不是Running呢? 那是因为线程是可运行状态，并不表示此时此刻正在运行，线程的运行还需要处理器的调度。</p>
-<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span><span class="params">(ThreadGroup group, Runnable target, String name,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">long</span> stackSize)</span> </span>&#123;</span><br><span class="line">init(group, target, name, stackSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认的负载因子为0.75</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The default concurrency level for this table, used when not</span></span><br><span class="line"><span class="comment"> * otherwise specified in a constructor.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CONCURRENCY_LEVEL = <span class="number">16</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="currentThread"><a href="#currentThread" class="headerlink" title="currentThread()"></a>currentThread()</h3><p>返回当前执行线程对象的一个引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Returns a reference to the currently executing thread object.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span>  the currently executing thread.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> Thread <span class="title">currentThread</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>默认的并发级别为16</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The maximum capacity, used if a higher value is implicitly</span></span><br><span class="line"><span class="comment"> * specified by either of the constructors with arguments.  MUST</span></span><br><span class="line"><span class="comment"> * be a power of two &lt;= 1&lt;&lt;30 to ensure that entries are indexable</span></span><br><span class="line"><span class="comment"> * using ints.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="sleep-long-millis"><a href="#sleep-long-millis" class="headerlink" title="sleep(long millis)"></a>sleep(long millis)</h3><p>使当前执行的线程睡眠指定的 毫秒。当传入的时间millis为负数时，抛出<code>IllegalArgumentException</code>异常。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">(<span class="keyword">long</span> millis)</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br></pre></td></tr></table></figure>
+<p>最大容量为2的32次幂。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The minimum capacity for per-segment tables.  Must be a power</span></span><br><span class="line"><span class="comment"> * of two, at least two to avoid immediate resizing on next use</span></span><br><span class="line"><span class="comment"> * after lazy construction.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_SEGMENT_TABLE_CAPACITY = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="start"><a href="#start" class="headerlink" title="start()"></a>start()</h3><p>使当前线程开始执行。注意：一个已经执行的线程是不能执行<code>start()</code>方法的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * This method is not invoked for the main method thread or "system"</span></span><br><span class="line"><span class="comment">     * group threads created/set up by the VM. Any new functionality added</span></span><br><span class="line"><span class="comment">     * to this method in the future may have to also be added to the VM.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * A zero status value corresponds to state "NEW".</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (threadStatus != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalThreadStateException();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Notify the group that this thread is about to be started</span></span><br><span class="line"><span class="comment">     * so that it can be added to the group's list of threads</span></span><br><span class="line"><span class="comment">     * and the group's unstarted count can be decremented. */</span></span><br><span class="line">    group.add(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> started = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        start0();</span><br><span class="line">        started = <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!started) &#123;</span><br><span class="line">                group.threadStartFailed(<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable ignore) &#123;</span><br><span class="line">            <span class="comment">/* do nothing. If start0 threw a Throwable then</span></span><br><span class="line"><span class="comment">              it will be passed up the call stack */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最小的段数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The maximum number of segments to allow; used to bound</span></span><br><span class="line"><span class="comment"> * constructor arguments. Must be power of two less than 1 &lt;&lt; 24.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_SEGMENTS = <span class="number">1</span> &lt;&lt; <span class="number">16</span>; <span class="comment">// slightly conservative</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="void-interrupt"><a href="#void-interrupt" class="headerlink" title="void interrupt()"></a>void interrupt()</h3><p><code>interrupt()</code>中断当前线程的执行。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">interrupt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> != Thread.currentThread())</span><br><span class="line">        checkAccess();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">synchronized</span> (blockerLock) &#123;</span><br><span class="line">        Interruptible b = blocker;</span><br><span class="line">        <span class="keyword">if</span> (b != <span class="keyword">null</span>) &#123;</span><br><span class="line">            interrupt0();           <span class="comment">// Just to set the interrupt flag</span></span><br><span class="line">            b.interrupt(<span class="keyword">this</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    interrupt0();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>略微保守的最大段数为2的16次幂。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Number of unsynchronized retries in size and containsValue</span></span><br><span class="line"><span class="comment"> * methods before resorting to locking. This is used to avoid</span></span><br><span class="line"><span class="comment"> * unbounded retries if tables undergo continuous modification</span></span><br><span class="line"><span class="comment"> * which would make it impossible to obtain an accurate result.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> RETRIES_BEFORE_LOCK = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="boolean-isInterrupted"><a href="#boolean-isInterrupted" class="headerlink" title="boolean isInterrupted()"></a>boolean isInterrupted()</h2><p>检查当前线程是不是被中断。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterrupted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isInterrupted(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字段-Fields"><a href="#字段-Fields" class="headerlink" title="字段(Fields)"></a>字段(Fields)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A randomizing value associated with this instance that is applied to</span></span><br><span class="line"><span class="comment"> * hash code of keys to make hash collisions harder to find.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">final</span> <span class="keyword">int</span> hashSeed = randomHashSeed(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">randomHashSeed</span><span class="params">(ConcurrentHashMap instance)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (sun.misc.VM.isBooted() &amp;&amp; Holder.ALTERNATIVE_HASHING) &#123;</span><br><span class="line">        <span class="keyword">return</span> sun.misc.Hashing.randomHashSeed(instance);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="线程的优先级"><a href="#线程的优先级" class="headerlink" title="线程的优先级"></a>线程的优先级</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MIN_PRIORITY = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> NORM_PRIORITY = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MAX_PRIORITY = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-
-<p>线程的优先级分为10级，最小优先级为1，最大优先级为10,普通优先级为5.</p>
-<h2 id="setDaemon-boolean-on"><a href="#setDaemon-boolean-on" class="headerlink" title="setDaemon(boolean on)"></a>setDaemon(boolean on)</h2><p>如果on = true，则设置当前线程为守护线程。</p>
-<p>注意：这个方法必须在线程启动前调用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setDaemon</span><span class="params">(<span class="keyword">boolean</span> on)</span> </span>&#123;</span><br><span class="line">    checkAccess();</span><br><span class="line">    <span class="keyword">if</span> (isAlive()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalThreadStateException();</span><br><span class="line">    &#125;</span><br><span class="line">    daemon = on;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>transient: 用transient关键字标记的成员变量不参与序列化过程。</p>
 
       
     </div>
@@ -583,8 +578,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/24/ConcurrentHashMap源码解析（JDK7）/" rel="next" title="ConcurrentHashMap源码解析(JDK7)">
-                <i class="fa fa-chevron-left"></i> ConcurrentHashMap源码解析(JDK7)
+              <a href="/2018/10/23/Source reading/ArrayList 源码解析(JDK7)/" rel="next" title="ArrayList 源码解析(JDK1.7)">
+                <i class="fa fa-chevron-left"></i> ArrayList 源码解析(JDK1.7)
               </a>
             
           </div>
@@ -593,8 +588,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/04/Java Web项目如何获取表的ddl信息/" rel="prev" title="Java Web项目如何获取表的ddl信息？">
-                Java Web项目如何获取表的ddl信息？ <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/25/life/之间花园小区 近阿里网易恒生,宝龙城附近/" rel="prev" title="之江花园别墅小区 近阿里网易恒生大厦宝龙城">
+                之江花园别墅小区 近阿里网易恒生大厦宝龙城 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -670,7 +665,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -716,7 +711,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -803,7 +804,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thread-源码阅读"><span class="nav-number">1.</span> <span class="nav-text">Thread 源码阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">1.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">1.2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#currentThread"><span class="nav-number">1.2.1.</span> <span class="nav-text">currentThread()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sleep-long-millis"><span class="nav-number">1.2.2.</span> <span class="nav-text">sleep(long millis)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#start"><span class="nav-number">1.2.3.</span> <span class="nav-text">start()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#void-interrupt"><span class="nav-number">1.2.4.</span> <span class="nav-text">void interrupt()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boolean-isInterrupted"><span class="nav-number">1.3.</span> <span class="nav-text">boolean isInterrupted()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的优先级"><span class="nav-number">1.4.</span> <span class="nav-text">线程的优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setDaemon-boolean-on"><span class="nav-number">1.5.</span> <span class="nav-text">setDaemon(boolean on)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ConcurrentHashMap源码解析-JDK7"><span class="nav-number">1.</span> <span class="nav-text">ConcurrentHashMap源码解析(JDK7)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Constants-常量"><span class="nav-number">1.1.</span> <span class="nav-text">Constants (常量)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段-Fields"><span class="nav-number">1.2.</span> <span class="nav-text">字段(Fields)</span></a></li></ol></li></ol></div>
             
 
           </div>
