@@ -10,6 +10,8 @@ date: 2019-07-09 11:19:46
 
 # Climbing Stairs
 
+爬梯子问题是一个斐波那契问题，同时也是一个简单的动态规划问题，如何通过动态规划的方式解决爬梯子问题呢？
+
 <!-- more -->
 
 
@@ -98,9 +100,9 @@ public int climbStairs(int n) {
 
 
 
-具体代码实现请看[<https://github.com/shawn520/algorithms/blob/master/src/leetcode/dynamicProgramming/ClimbingStairs.java> ](<https://github.com/shawn520/algorithms/blob/master/src/leetcode/dynamicProgramming/ClimbingStairs.java> )
+[具体代码实现](https://github.com/shawn520/algorithms/blob/master/src/leetcode/dynamicProgramming/ClimbingStairs.java)
 
 ## 参考资料
 
-<https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653190796&idx=1&sn=2bf42e5783f3efd03bfb0ecd3cbbc380&chksm=8c990856bbee8140055c3429f59c8f46dc05be20b859f00fe8168efe1e6a954fdc5cfc7246b0&mpshare=1&scene=1&srcid=0709OvMHdeNK7eaMPIHxhGzi&key=95b17fddd06e963c3d29f369a67d55bdd472084d90b6e9ba9a2227393d7558aea7fdb904b5be96c98679ced6ce5256cf1cf5a2d0d390acd4803d7e78b7eaee9131ccaea9f37c5efcc8ae94f2f0558ced&ascene=1&uin=NDUxNjcyMjU3&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=O7C6j9RSY4oPV7QAs9MDZcZ%2F6vxPmw3fkRCQdM1JQFwZANsbL%2FNlcpAdszFVSCEt> 
+[参考资料1](https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653190796&idx=1&sn=2bf42e5783f3efd03bfb0ecd3cbbc380&chksm=8c990856bbee8140055c3429f59c8f46dc05be20b859f00fe8168efe1e6a954fdc5cfc7246b0&mpshare=1&scene=1&srcid=0709OvMHdeNK7eaMPIHxhGzi&key=95b17fddd06e963c3d29f369a67d55bdd472084d90b6e9ba9a2227393d7558aea7fdb904b5be96c98679ced6ce5256cf1cf5a2d0d390acd4803d7e78b7eaee9131ccaea9f37c5efcc8ae94f2f0558ced&ascene=1&uin=NDUxNjcyMjU3&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=O7C6j9RSY4oPV7QAs9MDZcZ%2F6vxPmw3fkRCQdM1JQFwZANsbL%2FNlcpAdszFVSCEt)
 
