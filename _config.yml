@@ -86,6 +86,6 @@ search:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repository: https://github.com/shawn520/shawn520.github.io.git #复制过来
-  branch: master
+  #type: git
+  #repository: https://github.com/shawn520/shawn520.github.io.git #复制过来
+  #branch: master

@@ -705,9 +705,9 @@ likely:
 # Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Linkedin,Mailto,Reddit,Delicious,StumbleUpon,Pinterest,
 # GooglePlus,Tumblr,GoogleBookmarks,Newsvine,Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru
 needmoreshare2:
-  enable: false
+  enable: true
   postbottom:
-    enable: false
+    enable: true
     options:
       iconStyle: box
       boxForm: horizontal
@@ -1179,3 +1179,9 @@ vendors:
 css: css
 js: js
 images: images
+
+# Online contact 
+daovoice: true
+daovoice_app_id: cda3138d
+#这里填你的刚才获得的 app_id
+
