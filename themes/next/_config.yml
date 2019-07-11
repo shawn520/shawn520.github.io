@@ -348,7 +348,7 @@ codeblock:
     style:
 
 # Use icon instead of the symblo # to indicate the tag at the bottom of the post
-tag_icon: false
+tag_icon: true
 
 # Wechat Subscriber
 wechat_subscriber:
