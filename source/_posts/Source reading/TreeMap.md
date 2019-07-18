@@ -11,7 +11,7 @@ date: 2019-07-18 10:08:46
 
 为后续阅读`ConcurrentHashMap`源码打基础。
 
-![类图]( )
+![](https://raw.githubusercontent.com/shawn520/storage/master/pictures/note/java/map-treeMap.png)
 
 <!-- more -->
 
@@ -59,9 +59,7 @@ static final class Entry<K,V> implements Map.Entry<K,V> {
 
 `TreeMap `继承`AbstractMap`, 实现`NavigableMap`接口，`NavigableMap`接口继承`SortedMap`, key有序。类图如下所示。红色表示接口，蓝色表示抽象类，绿色表示线程安全。
 
-![类图]( )
-
-
+![](https://raw.githubusercontent.com/shawn520/storage/master/pictures/note/java/map-treeMap.png)
 
 ```java
 public class TreeMap<K,V>
