@@ -240,17 +240,23 @@ private void fixAfterInsertion(Entry<K,V> x) {
 ```java
 private void rotateLeft(Entry<K,V> p) {
     if (p != null) {
+        // r指向当前节点的右孩子
         Entry<K,V> r = p.right;
+        // r的左子树设置为p的右子树
         p.right = r.left;
         if (r.left != null)
             r.left.parent = p;
+        // r的父指针指向p的父指针
         r.parent = p.parent;
+        // 如果p为根节点，则新的根节点为r
         if (p.parent == null)
             root = r;
+        // 否则将p的父节点指向p的指针指向r
         else if (p.parent.left == p)
             p.parent.left = r;
         else
             p.parent.right = r;
+        // r的左指针指向p, 同时p的父指针指向r
         r.left = p;
         p.parent = r;
     }
