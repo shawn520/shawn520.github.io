@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/shawn520/storage/master/pictures/note/java/map-treeMap.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/shawn520/storage/master/pictures/note/java/map-treeMap.png">
-<meta property="og:updated_time" content="2019-07-18T07:37:56.943Z">
+<meta property="og:updated_time" content="2019-07-20T01:27:15.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TreeMap源码阅读">
 <meta name="twitter:description" content="想学习ConcurrentHashMap源码，先阅读理解TreeMap源码，顺便复习一下红黑树, 提升一下功力。 为后续阅读ConcurrentHashMap源码打基础。">
@@ -434,13 +434,23 @@
                 
               
 
-              <time title="创建时间：2019-07-18 10:08:46 / 修改时间：07:37:56" itemprop="dateCreated datePublished" datetime="2019-07-18T10:08:46Z">2019-07-18</time>
+              <time title="创建时间：2019-07-18 10:08:46" itemprop="dateCreated datePublished" datetime="2019-07-18T10:08:46Z">2019-07-18</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-20 01:27:15" itemprop="dateModified" datetime="2019-07-20T01:27:15Z">2019-07-20</time>
+              </span>
             
           
 
@@ -547,7 +557,7 @@
 <p>右旋和左旋类似。此处以左旋为例。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rotateLeft</span><span class="params">(Entry&lt;K,V&gt; p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// r指向当前节点的右孩子</span></span><br><span class="line">        Entry&lt;K,V&gt; r = p.right;</span><br><span class="line">        <span class="comment">// r的左子树设置为p的右子树</span></span><br><span class="line">        p.right = r.left;</span><br><span class="line">        <span class="keyword">if</span> (r.left != <span class="keyword">null</span>)</span><br><span class="line">            r.left.parent = p;</span><br><span class="line">        <span class="comment">// r的父指针指向p的父指针</span></span><br><span class="line">        r.parent = p.parent;</span><br><span class="line">        <span class="comment">// 如果p为根节点，则新的根节点为r</span></span><br><span class="line">        <span class="keyword">if</span> (p.parent == <span class="keyword">null</span>)</span><br><span class="line">            root = r;</span><br><span class="line">        <span class="comment">// 否则将p的父节点指向p的指针指向r</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p.parent.left == p)</span><br><span class="line">            p.parent.left = r;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p.parent.right = r;</span><br><span class="line">        <span class="comment">// r的左指针指向p, 同时p的父指针指向r</span></span><br><span class="line">        r.left = p;</span><br><span class="line">        p.parent = r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>码出高效 java开发手册</p>
+<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>码出高效 java开发手册</p>
 
       
     </div>
@@ -872,7 +882,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树特性"><span class="nav-number">1.1.</span> <span class="nav-text">红黑树特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-number">2.</span> <span class="nav-text">源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树数据结构定义"><span class="nav-number">2.1.</span> <span class="nav-text">红黑树数据结构定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类名和属性"><span class="nav-number">2.2.</span> <span class="nav-text">类名和属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入操作"><span class="nav-number">2.3.</span> <span class="nav-text">插入操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据规则寻找插入位置"><span class="nav-number">2.3.1.</span> <span class="nav-text">根据规则寻找插入位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整使满足红黑树特性"><span class="nav-number">2.3.2.</span> <span class="nav-text">调整使满足红黑树特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#左旋"><span class="nav-number">2.3.3.</span> <span class="nav-text">左旋</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树特性"><span class="nav-number">1.1.</span> <span class="nav-text">红黑树特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-number">2.</span> <span class="nav-text">源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树数据结构定义"><span class="nav-number">2.1.</span> <span class="nav-text">红黑树数据结构定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类名和属性"><span class="nav-number">2.2.</span> <span class="nav-text">类名和属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入操作"><span class="nav-number">2.3.</span> <span class="nav-text">插入操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据规则寻找插入位置"><span class="nav-number">2.3.1.</span> <span class="nav-text">根据规则寻找插入位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整使满足红黑树特性"><span class="nav-number">2.3.2.</span> <span class="nav-text">调整使满足红黑树特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#左旋"><span class="nav-number">2.3.3.</span> <span class="nav-text">左旋</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举个栗子"><span class="nav-number">3.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
