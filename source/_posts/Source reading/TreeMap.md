@@ -263,6 +263,10 @@ private void rotateLeft(Entry<K,V> p) {
 }
 ```
 
+## 举个栗子
+
+
+
 ## 参考资料
 
 码出高效 java开发手册
