@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NoYXduNTIwL3N0b3JhZ2UvbWFzdGVyL3BpY3R1cmVzL3Nob3ctY3JlYXRlLXRhYmxlLnBuZw">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly93czMuc2luYWltZy5jbi9sYXJnZS9iNzI3YzY1M2x5MWcxcWJsaGZicTRqMjBtbTA0aW14OC5qcGc">
-<meta property="og:updated_time" content="2019-07-21T15:53:07.412Z">
+<meta property="og:updated_time" content="2019-07-25T02:53:16.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Web项目如何获取表的ddl信息？">
 <meta name="twitter:description" content="背景：公司项目是做MySQL数据向同构和异构数据库同步和消息订阅的。在做向消息中间件RMQ同步时，需要根据源表的表信息，在目标数据库创建一个相同的逻辑表。 如果是用shell的话：show create table tableName就可以搞定啦。这里一共有两个参数，第一个是table，第二个是create Table, 我们需要的就是create Table的建表语句。但是这个用Java怎么实现">
@@ -449,7 +449,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-21 15:53:07" itemprop="dateModified" datetime="2019-07-21T15:53:07Z">2019-07-21</time>
+                <time title="修改时间：2019-07-25 02:53:16" itemprop="dateModified" datetime="2019-07-25T02:53:16Z">2019-07-25</time>
               </span>
             
           
@@ -564,7 +564,7 @@
   <p><span>本文标题:</span><a href="/2019/04/04/java/Java Web项目如何获取表的ddl信息/">Java Web项目如何获取表的ddl信息？</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Shawn Liu 的个人博客">Shawn Liu</a></p>
   <p><span>发布时间:</span>2019年04月04日 - 09:01</p>
-  <p><span>最后更新:</span>2019年07月21日 - 15:53</p>
+  <p><span>最后更新:</span>2019年07月25日 - 02:53</p>
   <p><span>原始链接:</span><a href="/2019/04/04/java/Java Web项目如何获取表的ddl信息/" title="Java Web项目如何获取表的ddl信息？">https://shawn520.github.io/2019/04/04/java/Java Web项目如何获取表的ddl信息/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://shawn520.github.io/2019/04/04/java/Java Web项目如何获取表的ddl信息/" aria-label="复制成功！"></i></span>
   </p>
@@ -745,7 +745,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -803,7 +803,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1384,10 +1386,37 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 
   
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
 
   
 
