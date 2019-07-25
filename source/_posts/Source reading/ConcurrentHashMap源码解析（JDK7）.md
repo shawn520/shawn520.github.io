@@ -8,7 +8,7 @@ date: 2018-10-23 21:03:46
 ---
 
 
-# ConcurrentHashMap源码解析(JDK7)
+# ConcurrentHashMap源码解析(JDK8)
 
 ![ConcurrentHashMap.png](https://i.loli.net/2018/10/23/5bced8c568df1.png)
 
