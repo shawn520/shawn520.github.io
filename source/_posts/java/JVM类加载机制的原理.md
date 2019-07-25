@@ -64,12 +64,59 @@ F --> E
 
 
 
-```mermaid
-classDiagram
-Class01 <|-- AveryLongClass : Cool
-Class03 *-- Class04
-Class05 o-- Class06
+## 类加载原理
+
+上图所述的三个类加载器是如何协作完成类加载的呢？
+
+他们是通过**双亲委派**机制实现的。
+
+
+
+
+
+类加载的例子：
+
+```java
+public class TestLoader {
+    public static void main(String[] args) {
+        ClassLoader appClassloader = TestLoader.class.getClassLoader();
+        System.out.println(appClassloader);
+
+        ClassLoader extClassLoader = appClassloader.getParent();
+        System.out.println(extClassLoader);
+
+        ClassLoader bootStrapClassLoader = extClassLoader.getParent();
+        System.out.println(bootStrapClassLoader);
+
+    }
+}
 ```
+
+运行结果：
+
+```shell
+sun.misc.Launcher$AppClassLoader@18b4aac2
+sun.misc.Launcher$ExtClassLoader@677327b6
+null
+```
+
+由运行结果可以看出TestLoader类是由`AppClassLoader`完成加载的。
+
+`bootStrapClassLoader`是由C++语言实现的，所以在java中看不到，所以程序输出null。
+
+
+
+## 类加载的主要步骤
+
+```mermaid
+graph LR
+A[装载] --> B[链接]
+B --> C[初始化]
+```
+
+
+
+
 
 
 
