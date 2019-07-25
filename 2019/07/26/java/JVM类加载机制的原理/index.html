@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Shawn Liu">
 <meta property="og:description" content="导读">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-25T04:58:19.468Z">
+<meta property="og:updated_time" content="2019-07-25T05:01:54.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM是如何实现类加载机制的？">
 <meta name="twitter:description" content="导读">
@@ -431,7 +431,7 @@
                 
               
 
-              <time title="创建时间：2019-07-25 21:19:46 / 修改时间：04:58:19" itemprop="dateCreated datePublished" datetime="2019-07-25T21:19:46Z">2019-07-25</time>
+              <time title="创建时间：2019-07-25 21:19:46 / 修改时间：05:01:54" itemprop="dateCreated datePublished" datetime="2019-07-25T21:19:46Z">2019-07-25</time>
             </span>
           
 
@@ -514,7 +514,9 @@
 <a id="more"></a>
 
 <p>Java是动态解释性语言，类(class)只有被加载到JVM中才能运行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[Demo.java] --&gt; |javac| B[Demo.class]</span><br><span class="line">B[Demo.class] --&gt; |ClassLoader| C[JVM]</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">graph LR
+A[Demo.java] --> |javac| B[Demo.class]
+B[Demo.class] --> |ClassLoader| C[JVM]</pre>
 
 <p>首先，由编译器将java文件编译成虚拟机可以执行的class文件。然后类加载将class文件加载到JVM中执行。</p>
 <p>加载过程是由类加载器（ClassLoader和它的子类）共同完成的, 类加载器本身也是一个类。</p>
@@ -530,7 +532,14 @@
 <li>加快编译速度。当部分类被修改时，只需要重新编译被修改了的类，从而大大加快编译速度。</li>
 </ol>
 <h2 id="类加载器分类"><a href="#类加载器分类" class="headerlink" title="类加载器分类"></a>类加载器分类</h2><p>在java中，可以将类分成3类：系统类、扩展类（平台类）、应用类。针对不同的类提供不同的类加载器，类加载器的关系如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A&#123;类加载器&#125; --&gt;|One| D[BootStrap Loader]</span><br><span class="line">A --&gt;|Two| E[ExtClassLoader]</span><br><span class="line">A --&gt;|Three| F[AppClassLoader]</span><br><span class="line">E --&gt;D </span><br><span class="line">F --&gt; E</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">graph LR
+A{类加载器} -->|One| D[BootStrap Loader]
+A -->|Two| E[ExtClassLoader]
+A -->|Three| F[AppClassLoader]
+E -->D 
+F --> E</pre>
+
+
 
 <h2 id="类加载原理"><a href="#类加载原理" class="headerlink" title="类加载原理"></a>类加载原理</h2><p>上图所述的三个类加载器是如何协作完成类加载的呢？</p>
 <p>他们是通过<strong>双亲委派</strong>机制实现的。</p>
@@ -542,9 +551,21 @@
 
 <p>由运行结果可以看出TestLoader类是由<code>AppClassLoader</code>完成加载的。</p>
 <p><code>bootStrapClassLoader</code>是由C++语言实现的，所以在java中看不到，所以程序输出null。</p>
-<h2 id="类加载的主要步骤"><a href="#类加载的主要步骤" class="headerlink" title="类加载的主要步骤"></a>类加载的主要步骤</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[装载] --&gt; B[链接]</span><br><span class="line">B --&gt; C[初始化]</span><br></pre></td></tr></table></figure>
+<h2 id="类加载的主要步骤"><a href="#类加载的主要步骤" class="headerlink" title="类加载的主要步骤"></a>类加载的主要步骤</h2><pre class="mermaid">graph LR
+A[装载] --> B[链接]
+B --> C[初始化]</pre>
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://mermaidjs.github.io/#/README" target="_blank" rel="noopener">https://mermaidjs.github.io/#/README</a></p>
+
+
+
+
+
+
+
+
+
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://mermaidjs.github.io/#/README">https://mermaidjs.github.io/#/README</a></p>
 
       
     </div>
@@ -922,7 +943,7 @@
   <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
   <script>
     if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
+      mermaid.initialize("");
     }
   </script>
 

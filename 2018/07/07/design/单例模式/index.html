@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2018/10/13/5bc15fd836737.png">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/08/singleton_pattern_uml_diagram.jpg">
-<meta property="og:updated_time" content="2019-07-25T04:58:19.468Z">
+<meta property="og:updated_time" content="2019-07-25T05:01:54.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
 <meta name="twitter:description" content="单例模式单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。">
@@ -449,7 +449,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-25 04:58:19" itemprop="dateModified" datetime="2019-07-25T04:58:19Z">2019-07-25</time>
+                <time title="修改时间：2019-07-25 05:01:54" itemprop="dateModified" datetime="2019-07-25T05:01:54Z">2019-07-25</time>
               </span>
             
           
@@ -592,11 +592,11 @@
 <p>调用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Singleton.INSTANCE.showMsg();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://github.com/shawn520/algorithms/tree/master/src/design/creation/singleton" target="_blank" rel="noopener">详细代码实现</a></p>
+<p><a href="https://github.com/shawn520/algorithms/tree/master/src/design/creation/singleton">详细代码实现</a></p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p><code>java.util.Collections</code> 是针对集合类的包装类，它的实现用到了单例模式，通过私有化构造方法，然后将所有的方法都用<code>static</code>关键字修饰。（类方法？）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Collections</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 构造方法私有化，确保不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Collections</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 方法使用static关键字修饰</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt; <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;T&gt; list)</span> </span>&#123;</span><br><span class="line">        list.sort(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/design-pattern/design-pattern-tutorial.html</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html">https://www.runoob.com/design-pattern/design-pattern-tutorial.html</a></p>
 
       
     </div>
@@ -978,7 +978,7 @@
   <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
   <script>
     if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
+      mermaid.initialize("");
     }
   </script>
 

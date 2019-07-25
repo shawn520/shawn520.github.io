@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Shawn Liu">
 <meta property="og:description" content="java可以通过锁和循环CAS的方式实现原子操作。那么如何通过循环CAS的方式实现Java的原子操作呢？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-25T04:58:19.468Z">
+<meta property="og:updated_time" content="2019-07-25T05:01:54.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA如何实现原子操作？">
 <meta name="twitter:description" content="java可以通过锁和循环CAS的方式实现原子操作。那么如何通过循环CAS的方式实现Java的原子操作呢？">
@@ -446,7 +446,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-25 04:58:19" itemprop="dateModified" datetime="2019-07-25T04:58:19Z">2019-07-25</time>
+                <time title="修改时间：2019-07-25 05:01:54" itemprop="dateModified" datetime="2019-07-25T05:01:54Z">2019-07-25</time>
               </span>
             
           
@@ -531,7 +531,7 @@
 <h2 id="CAS实现原子操作的问题"><a href="#CAS实现原子操作的问题" class="headerlink" title="CAS实现原子操作的问题"></a>CAS实现原子操作的问题</h2><p>循环CAS存在三大问题：ABA问题，循环时间长开销大，只能保证一个共享变量的原子操作。</p>
 <h2 id="ABA问题"><a href="#ABA问题" class="headerlink" title="ABA问题"></a>ABA问题</h2><p><strong>什么是ABA问题？</strong><br>如果一个值原来是A，变成了B，又变成了A。那么CAS认为值没有发生变化，实际上是发生了变化的。</p>
 <p><strong>解决思路</strong>：在变量前面追加版本号<br>A -&gt; B -&gt; A就会变成1A -&gt; 2B -&gt; 3A</p>
-<p>这里是完整的 <a href="https://github.com/shawn520/algorithms/blob/master/src/others/concurent/Counter.java" target="_blank" rel="noopener">代码</a>。</p>
+<p>这里是完整的 <a href="https://github.com/shawn520/algorithms/blob/master/src/others/concurent/Counter.java">代码</a>。</p>
 <p>参考资料：<br>方腾飞《Java并发编程的艺术》</p>
 
       
@@ -914,7 +914,7 @@
   <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
   <script>
     if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
+      mermaid.initialize("");
     }
   </script>
 

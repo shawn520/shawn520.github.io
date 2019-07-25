@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Shawn Liu">
 <meta property="og:description" content="Climbing Stairs爬梯子问题是一个斐波那契问题，同时也是一个简单的动态规划问题，如何通过动态规划的方式解决爬梯子问题呢？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-25T04:58:19.468Z">
+<meta property="og:updated_time" content="2019-07-25T05:01:54.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Climbing Stairs">
 <meta name="twitter:description" content="Climbing Stairs爬梯子问题是一个斐波那契问题，同时也是一个简单的动态规划问题，如何通过动态规划的方式解决爬梯子问题呢？">
@@ -446,7 +446,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-25 04:58:19" itemprop="dateModified" datetime="2019-07-25T04:58:19Z">2019-07-25</time>
+                <time title="修改时间：2019-07-25 05:01:54" itemprop="dateModified" datetime="2019-07-25T05:01:54Z">2019-07-25</time>
               </span>
             
           
@@ -557,8 +557,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">0</span> &gt;= n) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">1</span> == n) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">2</span> == n) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = a + b;</span><br><span class="line">        a = b;</span><br><span class="line">        b = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>非递归实现的时间复杂度为O(n), 空间复杂度为O(1).</p>
-<p><a href="https://github.com/shawn520/algorithms/blob/master/src/leetcode/dynamicProgramming/ClimbingStairs.java" target="_blank" rel="noopener">具体代码实现</a></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653190796&idx=1&sn=2bf42e5783f3efd03bfb0ecd3cbbc380&chksm=8c990856bbee8140055c3429f59c8f46dc05be20b859f00fe8168efe1e6a954fdc5cfc7246b0&mpshare=1&scene=1&srcid=0709OvMHdeNK7eaMPIHxhGzi&key=95b17fddd06e963c3d29f369a67d55bdd472084d90b6e9ba9a2227393d7558aea7fdb904b5be96c98679ced6ce5256cf1cf5a2d0d390acd4803d7e78b7eaee9131ccaea9f37c5efcc8ae94f2f0558ced&ascene=1&uin=NDUxNjcyMjU3&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=O7C6j9RSY4oPV7QAs9MDZcZ%2F6vxPmw3fkRCQdM1JQFwZANsbL%2FNlcpAdszFVSCEt" target="_blank" rel="noopener">参考资料1</a></p>
+<p><a href="https://github.com/shawn520/algorithms/blob/master/src/leetcode/dynamicProgramming/ClimbingStairs.java">具体代码实现</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653190796&idx=1&sn=2bf42e5783f3efd03bfb0ecd3cbbc380&chksm=8c990856bbee8140055c3429f59c8f46dc05be20b859f00fe8168efe1e6a954fdc5cfc7246b0&mpshare=1&scene=1&srcid=0709OvMHdeNK7eaMPIHxhGzi&key=95b17fddd06e963c3d29f369a67d55bdd472084d90b6e9ba9a2227393d7558aea7fdb904b5be96c98679ced6ce5256cf1cf5a2d0d390acd4803d7e78b7eaee9131ccaea9f37c5efcc8ae94f2f0558ced&ascene=1&uin=NDUxNjcyMjU3&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=O7C6j9RSY4oPV7QAs9MDZcZ%2F6vxPmw3fkRCQdM1JQFwZANsbL%2FNlcpAdszFVSCEt">参考资料1</a></p>
 
       
     </div>
@@ -942,7 +942,7 @@
   <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
   <script>
     if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
+      mermaid.initialize("");
     }
   </script>
 
