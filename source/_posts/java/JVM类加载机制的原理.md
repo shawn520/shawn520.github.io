@@ -54,12 +54,11 @@ B[Demo.class] --> |ClassLoader| C[JVM]
 在java中，可以将类分成3类：系统类、扩展类（平台类）、应用类。针对不同的类提供不同的类加载器，类加载器的关系如下：
 
 ```mermaid
-graph LR
-A{类加载器} -->|One| D[BootStrap Loader]
-A -->|Two| E[ExtClassLoader]
-A -->|Three| F[AppClassLoader]
-E -->D 
-F --> E
+graph BT
+A(AppClassLoader)-->B(ExtClassLoader)
+B-->C(BootStrap Loader)
+C-.->B
+B-.->A
 ```
 
 
