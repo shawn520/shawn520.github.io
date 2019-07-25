@@ -108,20 +108,20 @@
   </script>
 
 
-  <meta name="description" content="Object源码解析(JDK1.8)Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。这里写的代码是JDK8中的，其他版本的JDK可能略有不同。   包含的方法如下图： 所有方法按照字母a-z排序">
-<meta name="keywords" content="JDK源码">
+  <meta name="description" content="在软件工程中，没有一个中间层解决不了的问题！">
+<meta name="keywords" content="高效学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Object源码解析(JDK1.8)">
-<meta property="og:url" content="https://shawn520.github.io/2018/10/21/Source reading/Object源码解析(JDK1.8)/index.html">
+<meta property="og:title" content="计算机相关“黑话”了解一下">
+<meta property="og:url" content="https://shawn520.github.io/2019/07/27/study/计算机相关的定律/index.html">
 <meta property="og:site_name" content="Shawn Liu">
-<meta property="og:description" content="Object源码解析(JDK1.8)Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。这里写的代码是JDK8中的，其他版本的JDK可能略有不同。   包含的方法如下图： 所有方法按照字母a-z排序">
+<meta property="og:description" content="在软件工程中，没有一个中间层解决不了的问题！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTgvMTAvMjEvNWJjYmYyYTc5ZDM4NC5wbmc">
+<meta property="og:image" content="https://i.loli.net/2019/07/25/5d39a72bbcef968275.png">
 <meta property="og:updated_time" content="2019-07-25T13:11:04.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Object源码解析(JDK1.8)">
-<meta name="twitter:description" content="Object源码解析(JDK1.8)Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。这里写的代码是JDK8中的，其他版本的JDK可能略有不同。   包含的方法如下图： 所有方法按照字母a-z排序">
-<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTgvMTAvMjEvNWJjYmYyYTc5ZDM4NC5wbmc">
+<meta name="twitter:title" content="计算机相关“黑话”了解一下">
+<meta name="twitter:description" content="在软件工程中，没有一个中间层解决不了的问题！">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/25/5d39a72bbcef968275.png">
 
 
 
@@ -129,7 +129,7 @@
 
   
   
-  <link rel="canonical" href="https://shawn520.github.io/2018/10/21/Source reading/Object源码解析(JDK1.8)/">
+  <link rel="canonical" href="https://shawn520.github.io/2019/07/27/study/计算机相关的定律/">
 
 
 
@@ -139,7 +139,7 @@
   };
 </script>
 
-  <title>Object源码解析(JDK1.8) | Shawn Liu</title>
+  <title>计算机相关“黑话”了解一下 | Shawn Liu</title>
   
 
 
@@ -390,7 +390,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shawn520.github.io/2018/10/21/Source reading/Object源码解析(JDK1.8)/">
+    <link itemprop="mainEntityOfPage" href="https://shawn520.github.io/2019/07/27/study/计算机相关的定律/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shawn Liu">
@@ -407,7 +407,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Object源码解析(JDK1.8)
+          <h1 class="post-title" itemprop="name headline">计算机相关“黑话”了解一下
 
               
             
@@ -433,7 +433,7 @@
                 
               
 
-              <time title="创建时间：2018-10-21 10:45:26" itemprop="dateCreated datePublished" datetime="2018-10-21T10:45:26Z">2018-10-21</time>
+              <time title="创建时间：2019-07-26 18:19:46" itemprop="dateCreated datePublished" datetime="2019-07-26T18:19:46Z">2019-07-26</time>
             </span>
           
 
@@ -480,8 +480,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/10/21/Source reading/Object源码解析(JDK1.8)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/21/Source reading/Object源码解析(JDK1.8)/" itemprop="commentCount"></span>
+                <a href="/2019/07/27/study/计算机相关的定律/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/27/study/计算机相关的定律/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -489,7 +489,7 @@
 
           
           
-            <span id="/2018/10/21/Source reading/Object源码解析(JDK1.8)/" class="post-meta-item leancloud_visitors" data-flag-title="Object源码解析(JDK1.8)">
+            <span id="/2019/07/27/study/计算机相关的定律/" class="post-meta-item leancloud_visitors" data-flag-title="计算机相关“黑话”了解一下">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -522,59 +522,29 @@
       
 
       
-        <h1 id="Object源码解析-JDK1-8"><a href="#Object源码解析-JDK1-8" class="headerlink" title="Object源码解析(JDK1.8)"></a>Object源码解析(JDK1.8)</h1><p>Object类是Java中所有类的基类，在编译时会自动导入，位于java.lang包中，而Object中具有的属性和行为，是Java语言设计背后的思维体现。<strong>这里写的代码是JDK8中的，其他版本的JDK可能略有不同。</strong>   包含的方法如下图：</p>
-<p>所有方法按照字母<code>a-z</code>排序  </p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTgvMTAvMjEvNWJjYmYyYTc5ZDM4NC5wbmc" alt="object.png"></p>
+        <blockquote>
+<p>在软件工程中，没有一个中间层解决不了的问题！</p>
+</blockquote>
+<p><img src="https://i.loli.net/2019/07/25/5d39a72bbcef968275.png" alt="DBA.png"></p>
 <a id="more"></a>
 
-<p>Object类方法说明：</p>
-<p>Object类中的方法大部分都是native方法（如上图中方法前有一个绿色的实心小圆圈，圆圈的右上角有大写字母N，表示该方法是一个native方法），用此关键字修饰的方法是java中的本地方法，一般都是用C/C++语言实现的。</p>
-<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>Object类中没有显示的提供构造方法，是编译器默认提供的。</p>
-<h3 id="registerNatives-方法"><a href="#registerNatives-方法" class="headerlink" title="registerNatives()方法"></a><code>registerNatives()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">registerNatives</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">    registerNatives();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>registerNatives()</code>是一个本地方法，具体是用C/C++在DLL中实现的，在类加载的时候执行。<code>private</code>修饰使方法私有化，在类加载时执行静态代码块调用该方法。</p>
-<h3 id="getClass-方法"><a href="#getClass-方法" class="headerlink" title="getClass()方法"></a><code>getClass()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns the runtime class of this &#123;<span class="doctag">@code</span> Object&#125;. The returned</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Class&#125; object is the object that is locked by &#123;<span class="doctag">@code</span></span></span><br><span class="line"><span class="comment"> * static synchronized&#125; methods of the represented class.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;&lt;b&gt;The actual result type is &#123;<span class="doctag">@code</span> Class&lt;? extends |X|&gt;&#125;</span></span><br><span class="line"><span class="comment"> * where &#123;<span class="doctag">@code</span> |X|&#125; is the erasure of the static type of the</span></span><br><span class="line"><span class="comment"> * expression on which &#123;<span class="doctag">@code</span> getClass&#125; is called.&lt;/b&gt; For</span></span><br><span class="line"><span class="comment"> * example, no cast is required in this code fragment:&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Number n = 0;                             &#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Class&lt;? extends Number&gt; c = n.getClass(); &#125;</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> The &#123;<span class="doctag">@code</span> Class&#125; object that represents the runtime</span></span><br><span class="line"><span class="comment"> *         class of this object.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@jls</span> 15.8.2 Class Literals</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> Class&lt;?&gt; getClass();</span><br></pre></td></tr></table></figure>
 
-<p><code>getClass()</code> 被native修饰，同样也是调用本地方法实现的。返回当前对象运行时的类，<code>final</code>关键字修饰说明这个方法不能被子类重写。</p>
-<h3 id="hashcode-方法"><a href="#hashcode-方法" class="headerlink" title="hashcode()方法"></a><code>hashcode()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a hash code value for the object. This method is</span></span><br><span class="line"><span class="comment"> * supported for the benefit of hash tables such as those provided by</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.util.HashMap&#125;.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The general contract of &#123;<span class="doctag">@code</span> hashCode&#125; is:</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;Whenever it is invoked on the same object more than once during</span></span><br><span class="line"><span class="comment"> *     an execution of a Java application, the &#123;<span class="doctag">@code</span> hashCode&#125; method</span></span><br><span class="line"><span class="comment"> *     must consistently return the same integer, provided no information</span></span><br><span class="line"><span class="comment"> *     used in &#123;<span class="doctag">@code</span> equals&#125; comparisons on the object is modified.</span></span><br><span class="line"><span class="comment"> *     This integer need not remain consistent from one execution of an</span></span><br><span class="line"><span class="comment"> *     application to another execution of the same application.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;If two objects are equal according to the &#123;<span class="doctag">@code</span> equals(Object)&#125;</span></span><br><span class="line"><span class="comment"> *     method, then calling the &#123;<span class="doctag">@code</span> hashCode&#125; method on each of</span></span><br><span class="line"><span class="comment"> *     the two objects must produce the same integer result.</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;It is &lt;em&gt;not&lt;/em&gt; required that if two objects are unequal</span></span><br><span class="line"><span class="comment"> *     according to the &#123;<span class="doctag">@link</span> java.lang.Object#equals(java.lang.Object)&#125;</span></span><br><span class="line"><span class="comment"> *     method, then calling the &#123;<span class="doctag">@code</span> hashCode&#125; method on each of the</span></span><br><span class="line"><span class="comment"> *     two objects must produce distinct integer results.  However, the</span></span><br><span class="line"><span class="comment"> *     programmer should be aware that producing distinct integer results</span></span><br><span class="line"><span class="comment"> *     for unequal objects may improve the performance of hash tables.</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * As much as is reasonably practical, the hashCode method defined by</span></span><br><span class="line"><span class="comment"> * class &#123;<span class="doctag">@code</span> Object&#125; does return distinct integers for distinct</span></span><br><span class="line"><span class="comment"> * objects. (This is typically implemented by converting the internal</span></span><br><span class="line"><span class="comment"> * address of the object into an integer, but this implementation</span></span><br><span class="line"><span class="comment"> * technique is not required by the</span></span><br><span class="line"><span class="comment"> * Java&amp;trade; programming language.)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  a hash code value for this object.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.Object#equals(java.lang.Object)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.System#identityHashCode</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p><code>Object类</code>中的<code>hashcode()</code>方法用来鉴定两个对象是否相等，返回对象在内存中地址转换成的一个 <code>int</code>类型的值。如果没有重写<code>hashcode()</code>方法，任何对象的<code>hashcode()</code>方法都是不相等的。</p>
-<h3 id="equals-方法"><a href="#equals-方法" class="headerlink" title="equals()方法"></a><code>equals()</code>方法</h3><p>入参：Object</p>
-<p>返回值：Boolean类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>Object类</code>中的<code>equals()</code>方法用来判断两个对象是否相等。如果当前对象与传入的对象相同，则返回true，否则返回false。</p>
-<p>注意：这个<code>equals()</code>方法没有被final关键字修饰，也就是说可以被子类重写，比如说String类型里面重写了<code>equals()</code>方法，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//如果对象相等的话，直接返回true</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    	 * 如果对象不相同，则比较String中的value值是否相同。</span></span><br><span class="line"><span class="comment">     	 * 首先判断传入的对象是不是String类型的实例：</span></span><br><span class="line"><span class="comment">    	 * 如果是，将字符串转换成字符数组接着逐一比较数组里的字符是否相同，如果不同，直接返回false。</span></span><br><span class="line"><span class="comment">    	 * 遍历结束，则表示相同，返回true。</span></span><br><span class="line"><span class="comment">    	 * */</span></span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">        String anotherString = (String)anObject;</span><br><span class="line">        <span class="keyword">int</span> n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="keyword">char</span> v1[] = value;</span><br><span class="line">            <span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果传入的对象和当前对象是同一个对象，返回true；如果传入的对象是String类型的实例，则判断传入对象的String和当前String是否相等，如果相等，则返回true，否则返回false。</p>
-<p><code>instanceof</code>关键字的作用：判断左边的对象是否是右边类的实例，例如 <code>objectA.instanceof(ClassB)</code>判断对象A是否是类B的实例，如果是则返回<code>true</code>，否则返回<code>false</code>。</p>
-<h3 id="clone-方法"><a href="#clone-方法" class="headerlink" title="clone()方法"></a><code>clone()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">native</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException</span>;</span><br></pre></td></tr></table></figure>
-
-<p>返回当前实例的克隆对象。</p>
-<h3 id="toString-方法"><a href="#toString-方法" class="headerlink" title="toString()方法"></a><code>toString()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getClass().getName() + <span class="string">"@"</span> + Integer.toHexString(hashCode());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>返回表示当前对象的字符串，字符串的形式是类名@<code>hashCode</code>的十六进制表示，比如<code>objectA</code>是<code>classB</code>的实例，<code>ObjectA</code>的<code>hashCode</code>为c,而c的十六进制为d,则调用<code>ObjectA</code>的<code>toString()</code>方法返回ClassB@d。推荐所有的子类都重写这个方法。</p>
-<h3 id="notify-方法"><a href="#notify-方法" class="headerlink" title="notify()方法"></a><code>notify()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notify</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>唤醒在该对象监视器(Monitor)里等待的一个线程。</p>
-<h3 id="notifyAll-方法"><a href="#notifyAll-方法" class="headerlink" title="notifyAll()方法"></a><code>notifyAll()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">notifyAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>唤醒当前对象监视器下的所有线程。</p>
-<h3 id="wait-long-方法"><a href="#wait-long-方法" class="headerlink" title="wait(long)方法"></a><code>wait(long)</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br></pre></td></tr></table></figure>
-
-<p>使当前线程等待直到另外一个线程调用等待线程的<code>notify()</code>方法或者<code>notifyAll()</code>方法，或者等待指定的时间。</p>
-<h3 id="wait-long-int-方法"><a href="#wait-long-int-方法" class="headerlink" title="wait(long,int)方法"></a><code>wait(long,int)</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout, <span class="keyword">int</span> nanos)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timeout &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"timeout value is negative"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nanos &lt; <span class="number">0</span> || nanos &gt; <span class="number">999999</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">            <span class="string">"nanosecond timeout value out of range"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nanos &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        timeout++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    wait(timeout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>和只有一个入参的<code>wait(long)</code>方法类似，但它允许更精细的时间控制，以纳秒进行实时的统计。</p>
-<h3 id="wait-方法"><a href="#wait-方法" class="headerlink" title="wait()方法"></a><code>wait()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    wait(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="finalize-方法"><a href="#finalize-方法" class="headerlink" title="finalize()方法"></a><code>finalize()</code>方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>JAVA内存回收机制是通过根节点到当前对象之间有没有一条引用链指向来判断对象是否可以回收的。</p>
-<p>该对象没有引用指向的时候，垃圾收集器在合适的时机调用该对象的<code>finalize()</code>方法对该对象进行回收。</p>
-<p>参考资料</p>
-<p><a href="https://blog.csdn.net/benjaminlee1/article/details/72843713">https://blog.csdn.net/benjaminlee1/article/details/72843713</a></p>
+<h2 id="墨菲定律（Murphy’s-Law）"><a href="#墨菲定律（Murphy’s-Law）" class="headerlink" title="墨菲定律（Murphy’s Law）"></a>墨菲定律（Murphy’s Law）</h2><blockquote>
+<p>If there are two or more ways to do something, and one of those ways can result in a <strong>catastrophe</strong>, then someone will do it.</p>
+</blockquote>
+<p>“墨菲定律”：<strong>事情往往会向你所想到的不好的方向发展，只要有这个可能性</strong>。比如你衣袋里有两把钥匙，一把是你房间的，一把是汽车的;如果你现在想拿出车钥匙，会发生什么？是的，你往往是拿错了房间钥匙。</p>
+<p>如果你觉得那个地方潜在Bug没有修复，但是没有处理，时间长了，肯定会暴露问题。</p>
+<p>　根据“墨菲定律”：</p>
+<p>　　一、任何事都没有表面看起来那么简单；</p>
+<p>　　二、所有的事都会比你预计的时间长；</p>
+<p>　　三、会出错的事总会出错；</p>
+<p>　　四、如果你担心某种情况发生，那么它就更有可能发生。</p>
+<p>生活中的例子：</p>
+<p>如果在街上准备拦一辆车去赴一个时间紧迫的约会，你会发现街上所有的出租车不是有客就是根本不搭理你，而当你不需要租车的时候，却发现有很多空车在你周围游弋，只待你的一扬手，车随时就停在你的面前。</p>
+<p>“墨菲定律”告诉我们，容易犯错误是人类与生俱来的弱点，不论科技多发达，事故都会发生。而且我们解决问题的手段越高明，面临的麻烦就越严重。所以，我们在事前应该是尽可能地想得周到、全面一些，如果真的发生不幸或者损失，就笑着应对吧，关键在于总结所犯的错误，而不是企图掩盖它。</p>
+<p><strong>总结</strong>：不要忽略小概率事件，基数大了之后，小概率事件也会发生。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://wiki.mbalib.com/wiki/墨菲定律">https://wiki.mbalib.com/wiki/%E5%A2%A8%E8%8F%B2%E5%AE%9A%E5%BE%8B</a></p>
 
       
     </div>
@@ -588,35 +558,6 @@
 	<div>
       
         
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/10/21/Source reading/Object源码解析(JDK1.8)/">Object源码解析(JDK1.8)</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 Shawn Liu 的个人博客">Shawn Liu</a></p>
-  <p><span>发布时间:</span>2018年10月21日 - 10:45</p>
-  <p><span>最后更新:</span>2019年07月25日 - 13:11</p>
-  <p><span>原始链接:</span><a href="/2018/10/21/Source reading/Object源码解析(JDK1.8)/" title="Object源码解析(JDK1.8)">https://shawn520.github.io/2018/10/21/Source reading/Object源码解析(JDK1.8)/</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://shawn520.github.io/2018/10/21/Source reading/Object源码解析(JDK1.8)/" aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    $(".fa-clipboard").click(function(){
-      clipboard.on('success', function(){
-        swal({   
-          title: "",   
-          text: '复制成功',
-          icon: "success", 
-          showConfirmButton: true
-          });
-	});
-    });  
-</script>
-
       
     </div>
 
@@ -650,7 +591,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://shawn520.github.io/2018/10/21/Source reading/Object源码解析(JDK1.8)/" title="Object源码解析(JDK1.8)">https://shawn520.github.io/2018/10/21/Source reading/Object源码解析(JDK1.8)/</a>
+    <a href="https://shawn520.github.io/2019/07/27/study/计算机相关的定律/" title="计算机相关“黑话”了解一下">https://shawn520.github.io/2019/07/27/study/计算机相关的定律/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -666,7 +607,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/JDK源码/" rel="tag"><i class="fa fa-tag"></i> JDK源码</a>
+            <a href="/tags/高效学习/" rel="tag"><i class="fa fa-tag"></i> 高效学习</a>
           
         </div>
       
@@ -700,8 +641,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/21/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/07/26/java/JVM类加载机制的原理/" rel="next" title="JVM是如何实现类加载机制的？">
+                <i class="fa fa-chevron-left"></i> JVM是如何实现类加载机制的？
               </a>
             
           </div>
@@ -709,10 +650,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/23/Source reading/ArrayList 源码解析(JDK7)/" rel="prev" title="ArrayList 源码解析(JDK1.7)">
-                ArrayList 源码解析(JDK1.7) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -934,7 +871,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Object源码解析-JDK1-8"><span class="nav-number">1.</span> <span class="nav-text">Object源码解析(JDK1.8)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">1.0.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#registerNatives-方法"><span class="nav-number">1.0.2.</span> <span class="nav-text">registerNatives()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getClass-方法"><span class="nav-number">1.0.3.</span> <span class="nav-text">getClass()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashcode-方法"><span class="nav-number">1.0.4.</span> <span class="nav-text">hashcode()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equals-方法"><span class="nav-number">1.0.5.</span> <span class="nav-text">equals()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clone-方法"><span class="nav-number">1.0.6.</span> <span class="nav-text">clone()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toString-方法"><span class="nav-number">1.0.7.</span> <span class="nav-text">toString()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#notify-方法"><span class="nav-number">1.0.8.</span> <span class="nav-text">notify()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#notifyAll-方法"><span class="nav-number">1.0.9.</span> <span class="nav-text">notifyAll()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-long-方法"><span class="nav-number">1.0.10.</span> <span class="nav-text">wait(long)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-long-int-方法"><span class="nav-number">1.0.11.</span> <span class="nav-text">wait(long,int)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-方法"><span class="nav-number">1.0.12.</span> <span class="nav-text">wait()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finalize-方法"><span class="nav-number">1.0.13.</span> <span class="nav-text">finalize()方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#墨菲定律（Murphy’s-Law）"><span class="nav-number">1.</span> <span class="nav-text">墨菲定律（Murphy’s Law）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
