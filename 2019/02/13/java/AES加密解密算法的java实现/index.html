@@ -108,18 +108,18 @@
   </script>
 
 
-  <meta name="description" content="今天晚上在用Latex写论文，编译时报错： 12Missing $ inserted.&amp;lt;inserted text&amp;gt;  解决方案原来是论文中用到了下划线“_”，我用的是sync_mysql()方法名，但是在latex中下划线是有特殊含义的，所以如果想使用下划线可以使用以下两种方案 123\_% 或者这样\underline&amp;#123;\space&amp;#125;">
-<meta name="keywords" content="Latex">
+  <meta name="description" content="graph LR A[Clear text] --&amp;gt; |encrypt| B[Ciphertext] B[Ciphertext] --&amp;gt; |decrypt| C[Clear text]">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Latex报错Missing $ inserted">
-<meta property="og:url" content="https://shawn520.github.io/2019/07/27/study/latex/Missing $ inserted/index.html">
+<meta property="og:title" content="AES加密解密算法的java实现">
+<meta property="og:url" content="https://shawn520.github.io/2019/02/13/java/AES加密解密算法的java实现/index.html">
 <meta property="og:site_name" content="Shawn Liu">
-<meta property="og:description" content="今天晚上在用Latex写论文，编译时报错： 12Missing $ inserted.&amp;lt;inserted text&amp;gt;  解决方案原来是论文中用到了下划线“_”，我用的是sync_mysql()方法名，但是在latex中下划线是有特殊含义的，所以如果想使用下划线可以使用以下两种方案 123\_% 或者这样\underline&amp;#123;\space&amp;#125;">
+<meta property="og:description" content="graph LR A[Clear text] --&amp;gt; |encrypt| B[Ciphertext] B[Ciphertext] --&amp;gt; |decrypt| C[Clear text]">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-08-10T11:46:09.870Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Latex报错Missing $ inserted">
-<meta name="twitter:description" content="今天晚上在用Latex写论文，编译时报错： 12Missing $ inserted.&amp;lt;inserted text&amp;gt;  解决方案原来是论文中用到了下划线“_”，我用的是sync_mysql()方法名，但是在latex中下划线是有特殊含义的，所以如果想使用下划线可以使用以下两种方案 123\_% 或者这样\underline&amp;#123;\space&amp;#125;">
+<meta name="twitter:title" content="AES加密解密算法的java实现">
+<meta name="twitter:description" content="graph LR A[Clear text] --&amp;gt; |encrypt| B[Ciphertext] B[Ciphertext] --&amp;gt; |decrypt| C[Clear text]">
 
 
 
@@ -127,7 +127,7 @@
 
   
   
-  <link rel="canonical" href="https://shawn520.github.io/2019/07/27/study/latex/Missing $ inserted/">
+  <link rel="canonical" href="https://shawn520.github.io/2019/02/13/java/AES加密解密算法的java实现/">
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>Latex报错Missing $ inserted | Shawn Liu</title>
+  <title>AES加密解密算法的java实现 | Shawn Liu</title>
   
 
 
@@ -388,7 +388,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shawn520.github.io/2019/07/27/study/latex/Missing $ inserted/">
+    <link itemprop="mainEntityOfPage" href="https://shawn520.github.io/2019/02/13/java/AES加密解密算法的java实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shawn Liu">
@@ -405,7 +405,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Latex报错Missing $ inserted
+          <h1 class="post-title" itemprop="name headline">AES加密解密算法的java实现
 
               
             
@@ -431,7 +431,7 @@
                 
               
 
-              <time title="创建时间：2019-07-26 18:19:46" itemprop="dateCreated datePublished" datetime="2019-07-26T18:19:46Z">2019-07-26</time>
+              <time title="创建时间：2019-02-12 21:19:46" itemprop="dateCreated datePublished" datetime="2019-02-12T21:19:46Z">2019-02-12</time>
             </span>
           
 
@@ -478,8 +478,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/27/study/latex/Missing $ inserted/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/27/study/latex/Missing $ inserted/" itemprop="commentCount"></span>
+                <a href="/2019/02/13/java/AES加密解密算法的java实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/13/java/AES加密解密算法的java实现/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -487,7 +487,7 @@
 
           
           
-            <span id="/2019/07/27/study/latex/Missing $ inserted/" class="post-meta-item leancloud_visitors" data-flag-title="Latex报错Missing $ inserted">
+            <span id="/2019/02/13/java/AES加密解密算法的java实现/" class="post-meta-item leancloud_visitors" data-flag-title="AES加密解密算法的java实现">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -520,17 +520,79 @@
       
 
       
-        <p>今天晚上在用Latex写论文，编译时报错：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Missing $ inserted.</span><br><span class="line">&lt;inserted text&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>原来是论文中用到了下划线“_”，我用的是<code>sync_mysql()</code>方法名，但是在latex中下划线是有特殊含义的，所以如果想使用下划线可以使用以下两种方案</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\_</span><br><span class="line">% 或者这样</span><br><span class="line">\underline&#123;\space&#125;</span><br></pre></td></tr></table></figure>
+        <pre class="mermaid">graph LR
+A[Clear text] --> |encrypt| B[Ciphertext]
+B[Ciphertext] --> |decrypt| C[Clear text]</pre>
 
 <a id="more"></a>
 
+<h2 id="常用对称加密算法比较"><a href="#常用对称加密算法比较" class="headerlink" title="常用对称加密算法比较"></a>常用对称加密算法比较</h2><p>1）DES（Data Encryption Standard，数据加密标准）<br>2）3DES（Triple DES、DESede，进行了三重DES加密的算法）<br>3）AES（Advanced Encryption Standard，高级数据加密标准，AES算法可以有效抵制针对DES的攻击算法）</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>秘钥长度</th>
+<th>默认秘钥长度</th>
+<th>工作模式</th>
+<th>填充方式</th>
+<th>对比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DES</td>
+<td>56</td>
+<td>56</td>
+<td>ECB、CBC、PCBC、CTR、CTS、CFB、CFB8-CFB128、OFB、OFB8-OFB128</td>
+<td>NoPadding、PKCS5Padding、ISO10126Padding</td>
+<td>数据加密标准，是对称加密算法领域中的典型算法 2.特点：密钥偏短（56位）、生命周期短（避免被破解）</td>
+</tr>
+<tr>
+<td>3DES</td>
+<td>112、168</td>
+<td>168</td>
+<td>ECB、CBC、PCBC、CTR、CTS、CFB、CFB8-CFB128、OFB、OFB8-OFB128</td>
+<td>NoPadding、PKCS5Padding、ISO10126Padding</td>
+<td>将密钥长度增至112位或168位，通过增加迭代次数提高安全性 2.缺点：处理速度较慢、密钥计算时间较长、加密效率不高</td>
+</tr>
+<tr>
+<td>AES</td>
+<td>128、192、256</td>
+<td>128</td>
+<td>ECB、CBC、PCBC、CTR、CTS、CFB、CFB8-CFB128、OFB、OFB8-OFB128</td>
+<td>NoPadding、PKCS5Padding、ISO10126Padding</td>
+<td>高级数据加密标准，能够有效抵御已知的针对DES算法的所有攻击 2.特点：<strong>密钥建立时间短、灵敏性好、内存需求低、安全性高</strong></td>
+</tr>
+</tbody></table>
+<p>通过比较以上几种开源加密算法，AES加密码算法密钥建立时间短、灵敏性好、内存需求低、安全性高。</p>
+<h2 id="AES的java实现"><a href="#AES的java实现" class="headerlink" title="AES的java实现"></a>AES的java实现</h2><p>类变量定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_ALGORITHM = <span class="string">"AES"</span>;</span><br><span class="line"><span class="comment">// 默认的加密算法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_CIPHER_ALGORITHM = <span class="string">"AES/ECB/PKCS5Padding"</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String KEY = getKey();</span><br></pre></td></tr></table></figure>
 
+<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * AES 加密</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> content 待加密内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> key 加密密钥</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回Base64转码后的加密数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">aesEncrypt</span><span class="params">(String content, String key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        Cipher cipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM); <span class="comment">//创建密码器</span></span><br><span class="line">        <span class="keyword">byte</span> [] byteContent = content.getBytes(<span class="string">"utf-8"</span>);</span><br><span class="line">        cipher.init(Cipher.ENCRYPT_MODE, getSecretKey(key)); <span class="comment">//初始化为加密模式的密码器</span></span><br><span class="line">        <span class="keyword">byte</span> [] result = cipher.doFinal(byteContent);   <span class="comment">//加密</span></span><br><span class="line">        <span class="keyword">return</span> Base64.getEncoder().encodeToString(result);  <span class="comment">//通过Base64转码返回</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/zhangpeterx/article/details/86032665">https://blog.csdn.net/zhangpeterx/article/details/86032665</a></p>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * AES 解密操作</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> content the String to decrypt</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> key the key to decrypt the content.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the String after decrypt.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">aesDecrypt</span><span class="params">(String content, String key)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">// 实例化</span></span><br><span class="line">        Cipher cipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);</span><br><span class="line">        <span class="comment">// 使用密钥初始化，设置为解密模式</span></span><br><span class="line">        cipher.init(Cipher.DECRYPT_MODE, getSecretKey(key));</span><br><span class="line">        <span class="comment">// 执行解密操作</span></span><br><span class="line">        <span class="keyword">byte</span> [] result = cipher.doFinal(Base64.getDecoder().decode(content));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(result, <span class="string">"utf-8"</span>);</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成加密秘钥"><a href="#生成加密秘钥" class="headerlink" title="生成加密秘钥"></a>生成加密秘钥</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成加密秘钥</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a generated secret key.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> SecretKeySpec <span class="title">getSecretKey</span><span class="params">(<span class="keyword">final</span> String key)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//返回生成指定算法密钥生成器的 KeyGenerator 对象</span></span><br><span class="line">    KeyGenerator keyGenerator;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);</span><br><span class="line"></span><br><span class="line">        SecureRandom secureRandom = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>);</span><br><span class="line">        secureRandom.setSeed(key.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// AES 要求密钥长度为 128</span></span><br><span class="line">        keyGenerator.init(<span class="number">128</span>, secureRandom);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 生成一个秘钥</span></span><br><span class="line">        SecretKey secretKey = keyGenerator.generateKey();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 转换为AES专用秘钥</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SecretKeySpec(secretKey.getEncoded(), KEY_ALGORITHM);</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="异或加密实现"><a href="#异或加密实现" class="headerlink" title="异或加密实现"></a>异或加密实现</h2><h3 id="异或加密"><a href="#异或加密" class="headerlink" title="异或加密"></a>异或加密</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">XOREncrypt</span><span class="params">(String content, String key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span> [] contentBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">byte</span> [] keyBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        contentBytes = content.getBytes(<span class="string">"utf-8"</span>);</span><br><span class="line">        keyBytes = key.getBytes(<span class="string">"utf-8"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">byte</span> [] encryptBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[contentBytes.length];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;contentBytes.length;i++) &#123;</span><br><span class="line">        encryptBytes[i] = (<span class="keyword">byte</span>)(contentBytes[i] ^ keyBytes[i%keyBytes.length]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过Base64转码返回</span></span><br><span class="line">    <span class="keyword">return</span> Base64.getEncoder().encodeToString(encryptBytes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="异或解密"><a href="#异或解密" class="headerlink" title="异或解密"></a>异或解密</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">XORDecrypt</span><span class="params">(String content, String key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span> [] contentBytes = Base64.getDecoder().decode(content);</span><br><span class="line">    <span class="keyword">byte</span> [] keyBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        keyBytes = key.getBytes(<span class="string">"utf-8"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">byte</span> [] encryptBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[contentBytes.length];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;contentBytes.length;i++) &#123;</span><br><span class="line">        encryptBytes[i] = (<span class="keyword">byte</span>)(contentBytes[i] ^ keyBytes[i%keyBytes.length]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(encryptBytes,<span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">catch</span> (UnsupportedEncodingException e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="AES加异或"><a href="#AES加异或" class="headerlink" title="AES加异或"></a>AES加异或</h2><h3 id="加密-1"><a href="#加密-1" class="headerlink" title="加密"></a>加密</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加密</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> content 待加密内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回aes加密和异或操作之后的加密数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encrypt</span><span class="params">(String content)</span></span>&#123;</span><br><span class="line">    <span class="comment">// logger.info("获取的key为:" + KEY);</span></span><br><span class="line">    String encrypt = aesEncrypt(content,KEY);</span><br><span class="line">    <span class="keyword">return</span> XOREncrypt(encrypt,KEY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解密-1"><a href="#解密-1" class="headerlink" title="解密"></a>解密</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解密</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> content the String to decrypt</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the String after xor &amp; decrypt.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decrypt</span><span class="params">(String content)</span></span>&#123;</span><br><span class="line">    String afterXOR = XORDecrypt(content,KEY);</span><br><span class="line">    <span class="keyword">return</span> aesDecrypt(afterXOR,KEY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>用base64编码解决ascII中的不可见字符问题<br>windows和Linux系统 SecureRandom 类中 setSeed（）底层调用的是 native 方法.</p>
+<p>所以造成了不同环境之间随机数出现了差别。导致不同平台下解密不一致问题。 </p>
+<p>所以</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keyGenerator.init(<span class="number">128</span>, <span class="keyword">new</span> SecureRandom((key.getBytes())));</span><br></pre></td></tr></table></figure>
+
+<p>需要改为生成强随机数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SecureRandom secureRandom = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>);</span><br><span class="line">secureRandom.setSeed(key.getBytes());</span><br><span class="line"><span class="comment">// AES 要求密钥长度为 128</span></span><br><span class="line">keyGenerator.init(<span class="number">128</span>, secureRandom);</span><br></pre></td></tr></table></figure>
+
+<p>使得AES加密解密算法支持跨平台。</p>
+<p>具体代码实现（）</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>十分钟读懂AES加密算法（<a href="https://blog.csdn.net/u012721519/article/details/79612516）">https://blog.csdn.net/u012721519/article/details/79612516）</a></p>
+<p>AES算法简介(<a href="https://blog.csdn.net/u012721519/article/details/79612128">https://blog.csdn.net/u012721519/article/details/79612128</a>)</p>
 
       
     </div>
@@ -577,7 +639,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://shawn520.github.io/2019/07/27/study/latex/Missing $ inserted/" title="Latex报错Missing $ inserted">https://shawn520.github.io/2019/07/27/study/latex/Missing $ inserted/</a>
+    <a href="https://shawn520.github.io/2019/02/13/java/AES加密解密算法的java实现/" title="AES加密解密算法的java实现">https://shawn520.github.io/2019/02/13/java/AES加密解密算法的java实现/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -593,7 +655,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/Latex/" rel="tag"><i class="fa fa-tag"></i> Latex</a>
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
         </div>
       
@@ -627,8 +689,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/26/java/JVM类加载机制的原理/" rel="next" title="JVM是如何实现类加载机制的？">
-                <i class="fa fa-chevron-left"></i> JVM是如何实现类加载机制的？
+              <a href="/2019/02/12/java/springBoot继承MyBatis如何实现多数据源动态加载/" rel="next" title="spring Boot继承MyBatis 如何实现多数据源动态加载？">
+                <i class="fa fa-chevron-left"></i> spring Boot继承MyBatis 如何实现多数据源动态加载？
               </a>
             
           </div>
@@ -637,8 +699,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/27/study/计算机相关的定律/" rel="prev" title="计算机相关“黑话”了解一下">
-                计算机相关“黑话”了解一下 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/21/Source reading/Thread 源码阅读/" rel="prev" title="Thread 源码阅读">
+                Thread 源码阅读 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -867,7 +929,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用对称加密算法比较"><span class="nav-number">1.</span> <span class="nav-text">常用对称加密算法比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AES的java实现"><span class="nav-number">2.</span> <span class="nav-text">AES的java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加密"><span class="nav-number">2.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解密"><span class="nav-number">2.2.</span> <span class="nav-text">解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成加密秘钥"><span class="nav-number">2.3.</span> <span class="nav-text">生成加密秘钥</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异或加密实现"><span class="nav-number">3.</span> <span class="nav-text">异或加密实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异或加密"><span class="nav-number">3.1.</span> <span class="nav-text">异或加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异或解密"><span class="nav-number">3.2.</span> <span class="nav-text">异或解密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AES加异或"><span class="nav-number">4.</span> <span class="nav-text">AES加异或</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加密-1"><span class="nav-number">4.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解密-1"><span class="nav-number">4.2.</span> <span class="nav-text">解密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注"><span class="nav-number">5.</span> <span class="nav-text">注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
