@@ -1,5 +1,5 @@
 ---
-title: 什么是Docker？
+ title: 什么是Docker？
 categories:
 - 好好学习
 tags:
@@ -15,6 +15,8 @@ Docker的思想来自于集装箱
 云计算就好比大货轮。docker就是集装箱。
 
 docker就是用来存放应用的一个容器。
+
+![](https://www.runoob.com/wp-content/uploads/2016/04/docker01.png)
 
 <!-- more -->
 
