@@ -1,0 +1,29 @@
+{
+  "name": "shawn520.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawn520/shawn520.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shawn520/shawn520.github.io/issues"
+  },
+  "homepage": "https://github.com/shawn520/shawn520.github.io#readme",
+  "devDependencies": {
+    "vuepress": "^1.5.3",
+    "webpack": "^4.8.1",
+    "webpack-dev-server": "^3.5.1"
+  }
+}
